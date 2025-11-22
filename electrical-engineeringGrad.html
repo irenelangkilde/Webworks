@@ -43,6 +43,19 @@
     h2{font-size:34px;margin:12px 0 6px}
     p.lead{color:#cbd5e1;font-size:18px;line-height:1.65}
     .hero-card{background:linear-gradient(180deg, rgba(15,23,42,.9), rgba(2,6,23,.9));border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+    .hero-photo {
+        display: block;
+        margin: 24px auto 12px;      /* space above/below the image */
+        max-width: 80px;            /* 240 adjust to taste (200–320px works well) */
+        width: 100%;                 /* responsive scaling */
+        height: auto;
+        border-radius: 8px;          /* soft corners; set to 50% for circular crop if image is square */
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      } 
+      .ee-class {
+        color: #1ea472;
+        margin-top: 0;
+      }   
     .grid{display:grid;gap:18px}
     .grid.cols-3{grid-template-columns:repeat(3,1fr)}
     .card{background:linear-gradient(180deg, #0a1222, #070c17);border:1px solid rgba(148,163,184,.18);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
@@ -64,7 +77,15 @@
     <div class="container">
       <nav>
         <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
+          <!--div class="logo" aria-hidden="true" </div -->
+
+          <!-- Portfolio headshot/photo just above the green phrase -->
+        <img
+          src="assets/images/stockphoto_youngman.png"
+          alt="Your Name — Electrical Engineering"
+          class="hero-photo"
+        />
+
           <h1><!-- Your Name --> Your Name</h1>
         </div>
         <div class="links">
@@ -83,6 +104,9 @@
     <section class="section">
       <div class="container hero">
         <div>
+
+        <!--h2 class="ee-class">Electrical Engineering — Class of 2026</h2 -->
+    
           <span class="badge">Electrical Engineering — Class of <!-- Year --> Spring Next Year</span>
           <h2>Designing reliable hardware and smart embedded systems.</h2>
           <p class="lead">I’m <strong><!-- YourName --></strong>, an electrical engineering major focused on <em>embedded systems</em>, <em>PCB design</em>, and <em>power electronics</em>. I love building things that ship — from STM32‑powered devices to IoT dashboards and high‑efficiency motor drivers.</p>
