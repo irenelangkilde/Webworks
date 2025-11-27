@@ -293,6 +293,20 @@
                 gap: 10px;
             }
         }
+/* --- Watermark (diagonal, subtle) --- */
+body::after {
+    content: "Irene's Webworks";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 10vw;
+    color: rgba(0, 0, 0, 0.06); /* light gray for your white background */
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -1;
+}
     </style>
 </head>
 <body>
