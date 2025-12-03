@@ -1,34 +1,19 @@
-source: /
 paths:
   uploads: uploads
   static: ''
 collections_config:
-  pages:
-    path: ''
-    icon: wysiwyg
-    disable_url: false
-    disable_add: false
-    disable_add_folder: false
-    disable_file_actions: false
   college_grads:
     path: collegeGrads
+    glob:
+      -
     icon: roller_shades
-    url: /collegeGrads/[slug]
-    disable_url: true
+    url: /[slug]
+    disable_url: false
     _enabled_editors:
       - visual
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
-  photography:
-    path: photography
-    icon: no_photography
-    disable_url: true
-    disable_add: false
-    disable_add_folder: false
-    disable_file_actions: false
-_snippets_imports:
-  jekyll: true
 timezone: America/Denver
 markdown:
   engine: kramdown

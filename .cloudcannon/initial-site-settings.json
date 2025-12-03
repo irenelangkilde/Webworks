@@ -1,0 +1,11 @@
+{
+  "ssg": "static",
+  "mode": "hosted",
+  "build": {
+    "hugoVersion": "0.128.1",
+    "rubyVersion": "2.7.3",
+    "nodeVersion": "18",
+    "denoVersion": "1.40.2",
+    "output_path": "collegeGrads"
+  }
+}
