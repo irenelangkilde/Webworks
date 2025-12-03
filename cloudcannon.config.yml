@@ -5,7 +5,7 @@ collections_config:
   college_grads:
     path: collegeGrads
     glob:
-      - '*.html'
+      -
     icon: roller_shades
     url: /[slug]
     disable_url: false
