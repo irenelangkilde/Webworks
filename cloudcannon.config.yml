@@ -1,14 +1,53 @@
+source: /
 paths:
-  static: ''
   uploads: uploads
+  static: ''
+collections_config:
+  pages:
+    path: ''
+    icon: wysiwyg
+    disable_url: false
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+  college_grads:
+    path: collegeGrads
+    icon: roller_shades
+    url: /[slug]
+    disable_url: true
+    _enabled_editors:
+      - visual
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+  photography:
+    path: photography
+    icon: no_photography
+    disable_url: true
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+_snippets_imports:
+  jekyll: true
 timezone: America/Denver
 markdown:
   engine: kramdown
   options:
-    heading_ids: false
-    gfm: false
+    xhtml: false
     breaks: false
+    linkify: false
     typographer: false
+    spaced_lists: false
+    sentence_per_line: false
+    gfm: false
+    code_block_fences: '```'
+    escape_snippets_in_code_blocks: false
+    treat_indentation_as_code: true
+    table: false
+    strikethrough: false
+    subscript: false
+    superscript: false
+    heading_ids: false
     attributes: true
     attribute_elements:
       inline: right
@@ -16,19 +55,3 @@ markdown:
       tr: none
       td: none
       li: right-of-prefix
-    treat_indentation_as_code: true
-source: /
-_snippets_imports:
-  jekyll: true
-collections_config:
-  pages:
-    path: ''
-    icon: wysiwyg
-  college_grads:
-    path: collegeGrads
-    icon: roller_shades
-    disable_url: true
-  photography:
-    path: photography
-    icon: no_photography
-    disable_url: true
