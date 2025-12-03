@@ -13,7 +13,7 @@ collections_config:
   college_grads:
     path: collegeGrads
     icon: roller_shades
-    url: /[slug]
+    url: /collegeGrads/[slug]
     disable_url: true
     _enabled_editors:
       - visual
