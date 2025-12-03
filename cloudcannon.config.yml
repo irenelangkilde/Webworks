@@ -29,6 +29,8 @@ collections_config:
     disable_file_actions: false
 _snippets_imports:
   jekyll: true
+editor:
+  default_path:
 timezone: America/Denver
 markdown:
   engine: kramdown
