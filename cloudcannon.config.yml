@@ -4,9 +4,11 @@ paths:
 collections_config:
   college_grads:
     path: collegeGrads
+    glob:
+      - '*.html'
     icon: roller_shades
-    url: /[filename]
-    disable_url: true
+    url: /[slug]
+    disable_url: false
     _enabled_editors:
       - visual
     disable_add: false
