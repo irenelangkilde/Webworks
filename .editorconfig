@@ -1,0 +1,25 @@
+# top-most EditorConfig file
+root = true
+
+# Defaults for all files
+[*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Indentation: 2 spaces for web files
+[*.{html,css,scss,js,ts,json,yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Markdown: keep trailing spaces (for line breaks)
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+# Makefiles use tabs
+[Makefile]
+indent_style = tab
+
