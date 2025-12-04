@@ -15,6 +15,70 @@ collections_config:
     icon: roller_shades
     url: /collegeGrads/[slug]
     disable_url: true
+    _editables:
+      text:
+        allow_custom_markup: true
+        remove_custom_markup: false
+        bold: true
+        copyformatting: true
+        italic: true
+        link: true
+        paths:
+        redo: true
+        removeformat: true
+        strike: true
+        subscript: true
+        superscript: true
+        underline: true
+        undo: true
+      block:
+        allow_custom_markup: false
+        remove_custom_markup: false
+        blockquote: true
+        bold: true
+        bulletedlist: true
+        center:
+        code:
+        copyformatting: true
+        embed: true
+        expandable: true
+        format:
+        height: 150
+        horizontalrule: true
+        image: true
+        image_size_attributes: true
+        indent: true
+        italic: true
+        justify:
+        left:
+        link: true
+        mime_type: image/webp
+        numberedlist: true
+        outdent: true
+        paths:
+        redo: true
+        removeformat: true
+        resize_style: contain
+        right:
+        snippet:
+        strike: true
+        styles:
+        subscript: true
+        superscript: true
+        table: false
+        underline: true
+        undo: true
+        width: 100
+      image:
+        expandable: true
+        height: 150
+        image_size_attributes: true
+        mime_type: image/webp
+        paths:
+        resize_style: contain
+        width: 100
+      link:
+        paths:
     _enabled_editors:
       - visual
     disable_add: false
