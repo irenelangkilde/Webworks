@@ -1,0 +1,706 @@
+<website_code>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zach Headrich - History Graduate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+body {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        line-height: 1.6;
+        color: #4a4a4a;
+        background-color: #faf8f5;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header/Hero Section */
+    header {
+        background: linear-gradient(135deg, #f5e6d3 0%, #f9e8e0 50%, #e8d5c4 100%);
+        padding: 80px 20px;
+        text-align: center;
+        border-bottom: 3px solid #c4a484;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Textured Background Pattern */
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.03) 10px, rgba(255,255,255,.03) 20px),
+            repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(107,78,61,.02) 10px, rgba(107,78,61,.02) 20px);
+        pointer-events: none;
+    }
+
+    /* Floating 3D Shapes */
+    .shape {
+        position: absolute;
+        opacity: 0.15;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .shape-1 {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #d4a5a5, #c4a484);
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .shape-2 {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #e8d5c4, #d4a5a5);
+        border-radius: 50%;
+        top: 70%;
+        right: 15%;
+        animation-delay: 2s;
+    }
+
+    .shape-3 {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #c4a484, #8b6f5c);
+        border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+        bottom: 15%;
+        left: 8%;
+        animation-delay: 4s;
+    }
+
+    .shape-4 {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #f9e8e0, #e8d5c4);
+        border-radius: 40% 60% 70% 30% / 60% 30% 70% 40%;
+        top: 30%;
+        right: 8%;
+        animation-delay: 1s;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) rotate(10deg);
+        }
+    }
+
+    .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 50px;
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Enhanced Profile Photo Container */
+    .photo-container {
+        position: relative;
+        animation: fadeInScale 1s ease-out;
+    }
+
+    @keyframes fadeInScale {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Gradient Ring around Photo */
+    .photo-container::before {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d4a5a5, #c4a484, #e8d5c4, #f9e8e0);
+        z-index: -1;
+        animation: rotate 8s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Inner gradient glow */
+    .photo-container::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border-radius: 50%;
+        background: linear-gradient(225deg, #f9e8e0, #e8d5c4, #d4a5a5);
+        z-index: -1;
+        opacity: 0.8;
+        filter: blur(10px);
+    }
+
+    .profile-photo {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid #fff;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 2;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-photo:hover {
+        transform: scale(1.05);
+    }
+
+    .hero-text {
+        text-align: left;
+        animation: fadeInRight 1s ease-out;
+    }
+
+    @keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    h1 {
+        font-size: 3.2em;
+        color: #6b4e3d;
+        margin-bottom: 10px;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .tagline {
+        font-size: 1.6em;
+        color: #8b6f5c;
+        font-style: italic;
+        font-weight: 300;
+    }
+
+    /* Decorative accent lines */
+    .accent-line {
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #d4a5a5, #c4a484);
+        margin: 15px 0;
+        border-radius: 3px;
+    }
+
+    /* Section Styling */
+    section {
+        padding: 60px 20px;
+        border-bottom: 1px solid #e8d5c4;
+    }
+
+    section:last-of-type {
+        border-bottom: none;
+    }
+
+    h2 {
+        font-size: 2.2em;
+        color: #6b4e3d;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #d4a5a5;
+    }
+
+    /* About Section */
+    .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #5a5a5a;
+    }
+
+    /* Education Section */
+    .education-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #d4a5a5;
+    }
+
+    .education-item h3 {
+        color: #6b4e3d;
+        font-size: 1.6em;
+        margin-bottom: 10px;
+    }
+
+    .education-item .institution {
+        color: #8b6f5c;
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+
+    .education-item .date {
+        color: #999;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .coursework {
+        margin-top: 15px;
+    }
+
+    .coursework h4 {
+        color: #6b4e3d;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+
+    .coursework ul {
+        list-style-position: inside;
+        color: #5a5a5a;
+    }
+
+    .coursework li {
+        margin-bottom: 5px;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .skill-card {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 3px solid #d4a5a5;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-card h3 {
+        color: #6b4e3d;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    /* Experience Section */
+    .experience-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 900px;
+        margin: 0 auto 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #c4a484;
+    }
+
+    .experience-item h3 {
+        color: #6b4e3d;
+        font-size: 1.5em;
+        margin-bottom: 8px;
+    }
+
+    .experience-item .company {
+        color: #8b6f5c;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+
+    .experience-item .date {
+        color: #999;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .experience-item ul {
+        margin-left: 20px;
+        color: #5a5a5a;
+    }
+
+    .experience-item li {
+        margin-bottom: 8px;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .project-card {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-top: 4px solid #d4a5a5;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-card h3 {
+        color: #6b4e3d;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .project-card p {
+        color: #5a5a5a;
+        line-height: 1.7;
+    }
+
+    /* Contact Section */
+    .contact-content {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .contact-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.3s ease;
+    }
+
+    .contact-item:hover {
+        background-color: #f9e8e0;
+    }
+
+    .contact-item a {
+        color: #6b4e3d;
+        text-decoration: none;
+        font-size: 1.1em;
+        font-weight: 500;
+    }
+
+    .contact-item a:hover {
+        color: #8b6f5c;
+    }
+
+    .contact-label {
+        display: block;
+        color: #999;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #6b4e3d;
+        color: #f5e6d3;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 40px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.2em;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        .hero-content {
+            flex-direction: column;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .accent-line {
+            margin: 15px auto;
+        }
+
+        .skills-grid,
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .shape {
+            display: none;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.8em;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+        }
+
+        section {
+            padding: 40px 15px;
+        }
+
+        header {
+            padding: 60px 20px;
+        }
+    }
+</style>
+</head>
+<body>
+    <!-- Header/Hero Section -->
+    <header>
+        <!-- Decorative 3D Shapes -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    <div class="hero-content">
+        <div class="photo-container">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Zach Headrich Headshot" class="profile-photo">
+        </div>
+        <div class="hero-text">
+            <h1>Zach Headrich</h1>
+            <div class="accent-line"></div>
+            <p class="tagline">History Graduate & Researcher</p>
+        </div>
+    </div>
+</header>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>I am a passionate historian dedicated to understanding the complexities of the past and their relevance to contemporary society. With a strong foundation in research methodology and critical analysis, I seek to contribute to historical scholarship through archival research and public education. My goal is to make history accessible and engaging while pursuing opportunities in museums, archives, or historical consulting.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education">
+    <div class="container">
+        <h2>Education</h2>
+        <div class="education-item">
+            <h3>Bachelor of Arts in History</h3>
+            <p class="institution">University Name</p>
+            <p class="date">Graduation Year: 2024</p>
+            <div class="coursework">
+                <h4>Relevant Coursework:</h4>
+                <ul>
+                    <li>Advanced Historical Research Methods</li>
+                    <li>American History: Colonial Period to Present</li>
+                    <li>European History and the Modern World</li>
+                    <li>Digital Humanities and Historical Databases</li>
+                    <li>Historiography and Historical Theory</li>
+                    <li>Archival Research and Preservation</li>
+                </ul>
+            </div>
+            <div class="coursework" style="margin-top: 20px;">
+                <h4>Academic Achievements:</h4>
+                <ul>
+                    <li>Dean's List - All Semesters</li>
+                    <li>History Department Honors</li>
+                    <li>Undergraduate Research Grant Recipient</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Research & Analysis</h3>
+                <p>Expertise in primary and secondary source analysis, data interpretation, and historical methodology</p>
+            </div>
+            <div class="skill-card">
+                <h3>Writing & Communication</h3>
+                <p>Strong written and verbal communication skills with experience in academic writing and public presentation</p>
+            </div>
+            <div class="skill-card">
+                <h3>Critical Thinking</h3>
+                <p>Ability to evaluate complex historical narratives and synthesize diverse perspectives</p>
+            </div>
+            <div class="skill-card">
+                <h3>Archival Research</h3>
+                <p>Proficient in archival methodologies, document preservation, and cataloging systems</p>
+            </div>
+            <div class="skill-card">
+                <h3>Historical Analysis</h3>
+                <p>Skilled in contextualizing historical events and understanding their broader implications</p>
+            </div>
+            <div class="skill-card">
+                <h3>Digital Humanities</h3>
+                <p>Experience with digital archives, historical databases, and content management systems</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience">
+    <div class="container">
+        <h2>Experience</h2>
+        
+        <div class="experience-item">
+            <h3>Research Assistant</h3>
+            <p class="company">University History Department</p>
+            <p class="date">January 2023 - May 2024</p>
+            <ul>
+                <li>Conducted extensive archival research for faculty projects on 20th-century American social movements</li>
+                <li>Compiled and analyzed primary source documents from university special collections and digital archives</li>
+                <li>Collaborated with professors to develop annotated bibliographies and research summaries for publication</li>
+                <li>Assisted in organizing departmental symposiums and academic conferences</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Museum Intern</h3>
+            <p class="company">Local History Museum</p>
+            <p class="date">June 2023 - August 2023</p>
+            <ul>
+                <li>Assisted curators in developing educational exhibits on regional history and cultural heritage</li>
+                <li>Conducted guided tours for visitors, providing historical context and engaging narratives</li>
+                <li>Cataloged artifact collections using museum database software and archival best practices</li>
+                <li>Contributed to social media content creation to increase community engagement with museum programs</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <h2>Academic Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Senior Thesis: "Labor Movements in Post-War America"</h3>
+                <p>Conducted a comprehensive analysis of labor union activity and worker organizing efforts in the United States between 1945-1975. Utilized primary sources including union newsletters, government documents, and oral history interviews to examine the relationship between economic policy and labor activism during the Cold War era.</p>
+            </div>
+            <div class="project-card">
+                <h3>Digital History Project: "Mapping Historical Migration Patterns"</h3>
+                <p>Created an interactive digital map documenting immigration patterns to the United States in the early 20th century. Integrated census data, ship manifests, and settlement records to visualize demographic changes. The project demonstrated proficiency in digital humanities tools and data visualization techniques.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <h2>Contact</h2>
+        <div class="contact-content">
+            <p>I'm always interested in discussing history, research opportunities, and potential collaborations. Feel free to reach out!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:zach.headrich@email.com">zach.headrich@email.com</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">LinkedIn</span>
+                    <a href="https://linkedin.com/in/zachheadrich" target="_blank">linkedin.com/in/zachheadrich</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Phone</span>
+                    <a href="tel:555-123-4567">(555) 123-4567</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Zach Headrich. All rights reserved.</p>
+    </div>
+</footer>

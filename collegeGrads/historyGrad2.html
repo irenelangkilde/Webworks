@@ -1,0 +1,511 @@
+<website_code>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zach Headrich - History Graduate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    body {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        line-height: 1.6;
+        color: #4a4a4a;
+        background-color: #faf8f5;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header/Hero Section */
+    header {
+        background: linear-gradient(135deg, #f5e6d3 0%, #f9e8e0 100%);
+        padding: 60px 20px;
+        text-align: center;
+        border-bottom: 3px solid #c4a484;
+    }
+
+    .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .profile-photo {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #e8d5c4;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #6b4e3d;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .tagline {
+        font-size: 1.5em;
+        color: #8b6f5c;
+        font-style: italic;
+        font-weight: 300;
+    }
+
+    /* Section Styling */
+    section {
+        padding: 60px 20px;
+        border-bottom: 1px solid #e8d5c4;
+    }
+
+    section:last-of-type {
+        border-bottom: none;
+    }
+
+    h2 {
+        font-size: 2.2em;
+        color: #6b4e3d;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #d4a5a5;
+    }
+
+    /* About Section */
+    .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #5a5a5a;
+    }
+
+    /* Education Section */
+    .education-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #d4a5a5;
+    }
+
+    .education-item h3 {
+        color: #6b4e3d;
+        font-size: 1.6em;
+        margin-bottom: 10px;
+    }
+
+    .education-item .institution {
+        color: #8b6f5c;
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+
+    .education-item .date {
+        color: #999;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .coursework {
+        margin-top: 15px;
+    }
+
+    .coursework h4 {
+        color: #6b4e3d;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+
+    .coursework ul {
+        list-style-position: inside;
+        color: #5a5a5a;
+    }
+
+    .coursework li {
+        margin-bottom: 5px;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .skill-card {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 3px solid #d4a5a5;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-card h3 {
+        color: #6b4e3d;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    /* Experience Section */
+    .experience-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 900px;
+        margin: 0 auto 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #c4a484;
+    }
+
+    .experience-item h3 {
+        color: #6b4e3d;
+        font-size: 1.5em;
+        margin-bottom: 8px;
+    }
+
+    .experience-item .company {
+        color: #8b6f5c;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+
+    .experience-item .date {
+        color: #999;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .experience-item ul {
+        margin-left: 20px;
+        color: #5a5a5a;
+    }
+
+    .experience-item li {
+        margin-bottom: 8px;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .project-card {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-top: 4px solid #d4a5a5;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-card h3 {
+        color: #6b4e3d;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .project-card p {
+        color: #5a5a5a;
+        line-height: 1.7;
+    }
+
+    /* Contact Section */
+    .contact-content {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .contact-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.3s ease;
+    }
+
+    .contact-item:hover {
+        background-color: #f9e8e0;
+    }
+
+    .contact-item a {
+        color: #6b4e3d;
+        text-decoration: none;
+        font-size: 1.1em;
+        font-weight: 500;
+    }
+
+    .contact-item a:hover {
+        color: #8b6f5c;
+    }
+
+    .contact-label {
+        display: block;
+        color: #999;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #6b4e3d;
+        color: #f5e6d3;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 40px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.2em;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        .hero-content {
+            flex-direction: column;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .skills-grid,
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.8em;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+        }
+
+        section {
+            padding: 40px 15px;
+        }
+    }
+</style>
+</head>
+<body>
+    <!-- Header/Hero Section -->
+    <header>
+        <div class="hero-content">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Zach Headrich" class="profile-photo">
+            <div class="hero-text">
+                <h1>Zach Headrich</h1>
+                <p class="tagline">History Graduate | Researcher | Storyteller</p>
+            </div>
+        </div>
+    </header>
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <p class="about-text">
+            I am a recent History graduate with a passion for uncovering the stories that shape our world. Through rigorous research and analysis, I explore how historical events inform contemporary society. I am eager to apply my analytical skills, attention to detail, and love for storytelling to a career in education, museum curation, archival management, or public history.
+        </p>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education">
+    <div class="container">
+        <h2>Education</h2>
+        <div class="education-item">
+            <div class="degree">Bachelor of Arts in History</div>
+            <div class="university">State University</div>
+            <div class="graduation-year">Graduation Year: 2024</div>
+            <div class="coursework">
+                <div class="coursework-title">Relevant Coursework:</div>
+                <ul>
+                    <li>Modern American History</li>
+                    <li>European Intellectual History</li>
+                    <li>Historical Research Methods</li>
+                    <li>Digital Humanities and Archival Studies</li>
+                    <li>The History of Social Movements</li>
+                    <li>Historiography and Historical Theory</li>
+                </ul>
+            </div>
+            <div class="coursework" style="margin-top: 15px;">
+                <div class="coursework-title">Academic Achievements:</div>
+                <ul>
+                    <li>Dean's List (All Semesters)</li>
+                    <li>History Department Honors</li>
+                    <li>Phi Alpha Theta Honor Society Member</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">Research & Analysis</div>
+            <div class="skill-item">Academic Writing</div>
+            <div class="skill-item">Critical Thinking</div>
+            <div class="skill-item">Archival Research</div>
+            <div class="skill-item">Historical Analysis</div>
+            <div class="skill-item">Primary Source Evaluation</div>
+            <div class="skill-item">Data Management</div>
+            <div class="skill-item">Digital Humanities Tools</div>
+            <div class="skill-item">Public Speaking</div>
+            <div class="skill-item">MS Office Suite</div>
+            <div class="skill-item">Citation Management (Zotero)</div>
+            <div class="skill-item">Oral History Methods</div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience">
+    <div class="container">
+        <h2>Experience</h2>
+        
+        <div class="experience-item">
+            <div class="job-title">Research Assistant</div>
+            <div class="company">University History Department</div>
+            <div class="date">September 2023 - May 2024</div>
+            <ul class="responsibilities">
+                <li>Assisted Professor Williams with research for upcoming publication on 20th-century labor movements, conducting archival research and synthesizing primary source materials</li>
+                <li>Compiled annotated bibliographies of over 150 scholarly sources and organized research materials using digital database systems</li>
+                <li>Fact-checked historical claims and citations, ensuring accuracy and scholarly rigor across multiple chapters</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="job-title">Museum Intern</div>
+            <div class="company">City Historical Society & Museum</div>
+            <div class="date">June 2023 - August 2023</div>
+            <ul class="responsibilities">
+                <li>Catalogued and preserved archival materials including photographs, documents, and artifacts from the museum's permanent collection</li>
+                <li>Developed educational content for museum exhibits and assisted with public programming and guided tours for visitors of all ages</li>
+                <li>Conducted oral history interviews with community members for the museum's local history project, recording and transcribing testimonials</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <h2>Projects</h2>
+        
+        <div class="project-item">
+            <div class="project-title">Senior Thesis: "Urban Development and Social Change in Post-War America"</div>
+            <p class="project-description">
+                Conducted an in-depth analysis of urban renewal policies in major American cities between 1945-1975, examining their impact on minority communities and neighborhood structures. Utilized primary sources from municipal archives, census data, and oral histories. Thesis received departmental honors and was presented at the annual undergraduate research symposium.
+            </p>
+        </div>
+
+        <div class="project-item">
+            <div class="project-title">Digital History Project: "Mapping Historical Migration Patterns"</div>
+            <p class="project-description">
+                Created an interactive digital map documenting immigration patterns into the region during the early 20th century using GIS software and historical census records. The project combined quantitative data analysis with qualitative historical narrative, and was featured on the university's digital humanities website.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <h2>Contact</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-label">Email:</span>
+                <a href="mailto:zach.headrich@email.com">zach.headrich@email.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">LinkedIn:</span>
+                <a href="https://www.linkedin.com/in/zachheadrich" target="_blank">linkedin.com/in/zachheadrich</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Phone:</span>
+                <a href="tel:+15555551234">(555) 555-1234</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Location:</span>
+                <span>City, State</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Zach Headrich. All rights reserved.</p>
+</footer>
