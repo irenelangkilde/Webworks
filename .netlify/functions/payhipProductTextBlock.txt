@@ -1,0 +1,46 @@
+<!-- UI: put this in a Text block -->
+<div id="app">
+  <h2>Personalize your template</h2>
+
+  <label>
+    Your Name
+    <input id="userName" type="text" placeholder="e.g. Jane Doe" />
+  </label>
+
+  <label>
+    Your Major
+    <input id="major" type="text" placeholder="Psychology" />
+  </label>
+
+  <label>
+    Your Email
+    <input id="email" type="text" placeholder="e.g. janedoe@gmail.com" />
+  </label>
+
+  <label>
+    Your Phone
+    <input id="userName" type="text" placeholder="e.g. 123-456-7890" />
+  </label>
+
+  <label style="display:block;margin-top:8px;">
+    Background Color 1 (hex)
+    <input id="backgroundColor1" type="text" placeholder="#000000" />
+  </label>
+<label style="display:block;margin-top:8px;">
+    Background Color 2 (hex)
+    <input id="backgroundColor2" type="text" placeholder="#ffffff" />
+  </label>
+<label style="display:block;margin-top:8px;">
+    Accent Color 1(hex)
+    <input id="accentColor1" type="text" placeholder="#1e90ff" />
+  </label>
+<label style="display:block;margin-top:8px;">
+    Accent Color 2(hex)
+    <input id="accentColor2" type="text" placeholder="#aaaaaa" />
+  </label>
+
+  <button id="runBtn" style="margin-top:12px;">Generate</button>
+
+  <pre id="output" style="background:#f6f8fa;padding:12px;white-space:pre-wrap;margin-top:12px;"></pre>
+</div>
+
