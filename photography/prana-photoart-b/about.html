@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About • YOUR BRAND Photography</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-badge" aria-hidden="true"></div>
+          <div class="brand-name"><strong>YOUR BRAND</strong><span>Photography • City, State</span></div>
+        </a>
+        <nav class="navlinks" aria-label="Primary navigation">
+          <a href="about.html">About</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a>
+          <a href="portfolio.html">Portfolio</a><a href="reviews.html">Reviews</a><a href="contact.html">Contact</a><a href="documents.html">Documents</a>
+        </nav>
+        <div class="cta">
+          <a class="btn ghost" href="portfolio.html">View Work</a>
+          <a class="btn primary" href="contact.html">Book a Session</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="card page-card">
+        <h1>About</h1>
+        <p>
+          I’m a photographer who blends editorial composition with a relaxed, guided experience.
+          The goal is simple: images that feel natural, look premium, and hold up over time.
+        </p>
+        <hr class="sep" />
+        <div class="cols">
+          <div>
+            <p>
+              <b>What you can expect:</b> clear direction, thoughtful lighting, and a session that never feels awkward.
+              I’ll help with location timing, outfit guidance, and pacing so you can be present.
+            </p>
+            <ul class="list">
+              <li>Warm, accurate color and clean skin tones</li>
+              <li>Guided posing and movement prompts</li>
+              <li>Careful curation (you won’t receive hundreds of near-duplicates)</li>
+              <li>Print-ready edits and optional albums</li>
+            </ul>
+            <div class="note" style="margin-top:12px;">
+              Tip: Add a short personal paragraph here—what you love, how you work, and your ideal client.
+            </div>
+          </div>
+          <div class="card photo">
+            <img src="assets/img/about.jpg" alt="Photographer portrait or behind-the-scenes image" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><small>© <span id="year"></span> YOUR BRAND</small></div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
