@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Documents • YOUR BRAND Photography</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html"><div class="brand-badge" aria-hidden="true"></div><div class="brand-name"><strong>YOUR BRAND</strong><span>Photography • City, State</span></div></a>
+        <nav class="navlinks" aria-label="Primary navigation">
+          <a href="about.html">About</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a>
+          <a href="portfolio.html">Portfolio</a><a href="reviews.html">Reviews</a><a href="contact.html">Contact</a><a href="documents.html">Documents</a>
+        </nav>
+        <div class="cta"><a class="btn ghost" href="contact.html">Contact</a><button class="btn primary" type="button" data-print>Print</button></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="card page-card">
+        <h1>Documents</h1>
+        <p>
+          These are client-facing forms commonly used in photography workflows. Customize terms, prices, and legal language
+          to your business and jurisdiction.
+        </p>
+
+        <div class="note" style="margin-top:12px;">
+          Important: I am not a law firm. Have contracts reviewed by a licensed attorney in your state before using in production.
+        </div>
+
+        <hr class="sep" />
+
+        <!-- 1) Session Contract -->
+        <section class="card page-card" style="margin-top:14px;">
+          <h2 class="section-title" style="margin:0 0 6px 0;">1) Session Contract</h2>
+          <p class="section-sub" style="margin:0 0 12px 0;">
+            Use for portraits, couples, families, and brand sessions. Covers scope, payment, rescheduling, and usage.
+          </p>
+
+          <form class="form">
+            <div class="cols">
+              <div class="field">
+                <label>Client name</label>
+                <input name="client_name" placeholder="Full legal name" />
+              </div>
+              <div class="field">
+                <label>Client email</label>
+                <input name="client_email" type="email" placeholder="you@example.com" />
+              </div>
+            </div>
+
+            <div class="cols">
+              <div class="field">
+                <label>Session type</label>
+                <select name="session_type">
+                  <option>Portrait</option>
+                  <option>Couples / Engagement</option>
+                  <option>Family</option>
+                  <option>Brand / Headshots</option>
+                  <option>Event (use event addendum)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Session date & time</label>
+                <input name="session_datetime" placeholder="MM/DD/YYYY • time" />
+              </div>
+            </div>
+
+            <div class="cols">
+              <div class="field">
+                <label>Location</label>
+                <input name="location" placeholder="Address or general location" />
+              </div>
+              <div class="field">
+                <label>Package / deliverables</label>
+                <input name="package" placeholder="e.g., Signature • 60 minutes • 40 edited images" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Fees</label>
+              <input name="fees" placeholder="Total fee, retainer, and remaining balance terms" />
+            </div>
+
+            <hr class="sep" />
+
+            <div class="field">
+              <label>Contract terms (edit as needed)</label>
+              <textarea name="terms">
+1. Parties. This agreement is between YOUR BRAND (“Photographer”) and the Client listed above (“Client”).
+
+2. Scope. Photographer will provide the session described above and deliver edited digital images via an online gallery.
+
+3. Retainer & Payment. A non-refundable retainer reserves the session date. Remaining balance is due before or on the session date (unless otherwise stated). Late payments may delay delivery.
+
+4. Rescheduling & Cancellation. Client may reschedule once with at least 48 hours’ notice, subject to availability. If Photographer must reschedule due to illness, weather, or emergency, Photographer will offer alternative dates or refund payments received.
+
+5. Creative Style. Client has reviewed Photographer’s portfolio and understands that final images reflect Photographer’s editing style, composition, and artistic judgment. Minor retouching is included; extensive retouching is billed separately.
+
+6. Delivery. Typical turnaround is 7–14 days unless otherwise stated. Final delivery is via online gallery. Photographer is not responsible for image loss after delivery if Client does not back up files.
+
+7. Copyright & Usage. Photographer retains copyright. Client receives a personal-use license to download and print delivered images. Client may not sell images, submit for commercial use, or alter images for resale without written permission.
+
+8. Model Release (Optional). Client grants Photographer permission to use select images for portfolio, website, social media, and marketing. Client may opt out by initialing: ____.
+
+9. Liability. Photographer is not responsible for circumstances beyond control (venue restrictions, weather, late arrivals, uncooperative subjects). Liability is limited to amounts paid by Client.
+
+10. Client Conduct. Client agrees to be respectful and follow safety guidance. Photographer may end the session if unsafe, abusive, or inappropriate conduct occurs; payments remain due.
+
+11. Entire Agreement. This document constitutes the entire agreement and supersedes prior discussions. Any changes must be in writing.
+              </textarea>
+            </div>
+
+            <div class="cols">
+              <div class="field">
+                <label>Client signature (type full name)</label>
+                <input name="client_signature" placeholder="Full name" />
+              </div>
+              <div class="field">
+                <label>Date</label>
+                <input name="client_date" placeholder="MM/DD/YYYY" />
+              </div>
+            </div>
+
+            <div class="cols">
+              <div class="field">
+                <label>Photographer signature (type full name)</label>
+                <input name="photographer_signature" placeholder="Full name" />
+              </div>
+              <div class="field">
+                <label>Date</label>
+                <input name="photographer_date" placeholder="MM/DD/YYYY" />
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn primary" type="button" onclick="alert('For a real signature workflow, connect this form to a backend or e-sign tool.');">Save / Submit</button>
+              <button class="btn" type="button" data-print>Print contract</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- 2) Client Intake Questionnaire -->
+        <section class="card page-card" style="margin-top:14px;">
+          <h2 class="section-title" style="margin:0 0 6px 0;">2) Client Intake Questionnaire</h2>
+          <p class="section-sub" style="margin:0 0 12px 0;">Captures goals, preferences, and must-have shots.</p>
+
+          <form class="form">
+            <div class="cols">
+              <div class="field"><label>Name</label><input placeholder="Client name" /></div>
+              <div class="field"><label>Session type</label><input placeholder="Portrait / Family / Brand..." /></div>
+            </div>
+            <div class="field"><label>What is the main goal for this session?</label><textarea placeholder="What do you want these images to do for you?"></textarea></div>
+            <div class="field"><label>Anything you feel self-conscious about?</label><textarea placeholder="This helps with posing and angles."></textarea></div>
+            <div class="field"><label>Must-have shots</label><textarea placeholder="List poses, groupings, props, details, etc."></textarea></div>
+            <div class="field"><label>Editing preferences</label>
+              <select>
+                <option>Natural & true-to-life</option>
+                <option>Warm & golden</option>
+                <option>Moody & cinematic</option>
+                <option>Bright & airy</option>
+              </select>
+            </div>
+            <button class="btn" type="button" data-print>Print questionnaire</button>
+          </form>
+        </section>
+
+        <!-- 3) Model Release -->
+        <section class="card page-card" style="margin-top:14px;">
+          <h2 class="section-title" style="margin:0 0 6px 0;">3) Model Release</h2>
+          <p class="section-sub" style="margin:0 0 12px 0;">Permission to use images in marketing, portfolio, and promotions.</p>
+
+          <form class="form">
+            <div class="cols">
+              <div class="field"><label>Model / Client name</label><input /></div>
+              <div class="field"><label>Email</label><input type="email" /></div>
+            </div>
+            <div class="field">
+              <label>Release statement</label>
+              <textarea>
+I, the undersigned, grant YOUR BRAND (“Photographer”) permission to use photographs and/or video of me (and/or my minor children, if applicable) for portfolio, website, social media, advertising, and promotional purposes. I understand that I will not receive compensation for such use. I may revoke this permission in writing for future use; revocation does not affect materials already published.
+              </textarea>
+            </div>
+            <div class="cols">
+              <div class="field"><label>Signature (type full name)</label><input /></div>
+              <div class="field"><label>Date</label><input placeholder="MM/DD/YYYY" /></div>
+            </div>
+            <button class="btn" type="button" data-print>Print release</button>
+          </form>
+        </section>
+
+        <!-- 4) Print Release -->
+        <section class="card page-card" style="margin-top:14px;">
+          <h2 class="section-title" style="margin:0 0 6px 0;">4) Print Release</h2>
+          <p class="section-sub" style="margin:0 0 12px 0;">Clients can present this to labs/printers.</p>
+
+          <div class="note">
+            This certifies that the bearer has permission to print images delivered by YOUR BRAND for personal use.
+            Commercial use is not permitted without written consent.
+          </div>
+
+          <form class="form" style="margin-top:12px;">
+            <div class="cols">
+              <div class="field"><label>Client name</label><input /></div>
+              <div class="field"><label>Session date</label><input placeholder="MM/DD/YYYY" /></div>
+            </div>
+            <div class="cols">
+              <div class="field"><label>Photographer</label><input placeholder="YOUR BRAND" /></div>
+              <div class="field"><label>Contact</label><input placeholder="youremail@example.com" /></div>
+            </div>
+            <button class="btn" type="button" data-print>Print release</button>
+          </form>
+        </section>
+
+        <!-- 5) Wedding/Event Addendum (optional) -->
+        <section class="card page-card" style="margin-top:14px;">
+          <h2 class="section-title" style="margin:0 0 6px 0;">5) Event Addendum (Optional)</h2>
+          <p class="section-sub" style="margin:0 0 12px 0;">Use this when covering events with timelines and deliverables.</p>
+
+          <form class="form">
+            <div class="cols">
+              <div class="field"><label>Event name</label><input /></div>
+              <div class="field"><label>Coverage hours</label><input placeholder="e.g., 4 hours" /></div>
+            </div>
+            <div class="field"><label>Timeline / must-capture moments</label><textarea placeholder="Ceremony time, speeches, group photos, etc."></textarea></div>
+            <div class="field"><label>Venue contact / coordinator info</label><textarea></textarea></div>
+            <button class="btn" type="button" data-print>Print addendum</button>
+          </form>
+        </section>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container"><small>© <span id="year"></span> YOUR BRAND</small></div></footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

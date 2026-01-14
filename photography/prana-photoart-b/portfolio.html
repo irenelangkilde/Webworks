@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio • YOUR BRAND Photography</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html"><div class="brand-badge" aria-hidden="true"></div><div class="brand-name"><strong>YOUR BRAND</strong><span>Photography • City, State</span></div></a>
+        <nav class="navlinks" aria-label="Primary navigation">
+          <a href="about.html">About</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a>
+          <a href="portfolio.html">Portfolio</a><a href="reviews.html">Reviews</a><a href="contact.html">Contact</a><a href="documents.html">Documents</a>
+        </nav>
+        <div class="cta"><a class="btn ghost" href="pricing.html">Pricing</a><a class="btn primary" href="contact.html">Book a Session</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="card page-card">
+        <h1>Portfolio</h1>
+        <p>Click any image to view larger. Use filters to browse by session type.</p>
+
+        <div class="filters" aria-label="Portfolio filters">
+          <button class="chip active" type="button" data-filter="all">All</button>
+          <button class="chip" type="button" data-filter="portrait">Portrait</button>
+          <button class="chip" type="button" data-filter="couples">Couples</button>
+          <button class="chip" type="button" data-filter="family">Family</button>
+          <button class="chip" type="button" data-filter="brand">Brand</button>
+        </div>
+
+        <div class="work-grid" style="margin-top:14px;">
+          <a class="card work large" href="assets/img/work-01.jpg" data-lightbox data-src="assets/img/work-01.jpg" data-caption="Portrait session" data-category="portrait">
+            <img src="assets/img/work-01.jpg" alt="Portrait photo" />
+            <div class="work-meta"><div><strong>Portrait</strong><span class="tag">portrait</span></div><span class="tag">View</span></div>
+          </a>
+
+          <a class="card work" href="assets/img/work-02.jpg" data-lightbox data-src="assets/img/work-02.jpg" data-caption="Couples session" data-category="couples">
+            <img src="assets/img/work-02.jpg" alt="Couples photo" />
+            <div class="work-meta"><div><strong>Couples</strong><span class="tag">couples</span></div><span class="tag">View</span></div>
+          </a>
+
+          <a class="card work" href="assets/img/work-03.jpg" data-lightbox data-src="assets/img/work-03.jpg" data-caption="Family session" data-category="family">
+            <img src="assets/img/work-03.jpg" alt="Family photo" />
+            <div class="work-meta"><div><strong>Family</strong><span class="tag">family</span></div><span class="tag">View</span></div>
+          </a>
+
+          <a class="card work" href="assets/img/work-04.jpg" data-lightbox data-src="assets/img/work-04.jpg" data-caption="Brand session" data-category="brand">
+            <img src="assets/img/work-04.jpg" alt="Brand photo" />
+            <div class="work-meta"><div><strong>Brand</strong><span class="tag">brand</span></div><span class="tag">View</span></div>
+          </a>
+
+          <a class="card work" href="assets/img/work-05.jpg" data-lightbox data-src="assets/img/work-05.jpg" data-caption="Portrait detail" data-category="portrait">
+            <img src="assets/img/work-05.jpg" alt="Portrait detail" />
+            <div class="work-meta"><div><strong>Portrait</strong><span class="tag">portrait</span></div><span class="tag">View</span></div>
+          </a>
+
+          <a class="card work" href="assets/img/work-06.jpg" data-lightbox data-src="assets/img/work-06.jpg" data-caption="Couples editorial" data-category="couples">
+            <img src="assets/img/work-06.jpg" alt="Couples editorial" />
+            <div class="work-meta"><div><strong>Couples</strong><span class="tag">couples</span></div><span class="tag">View</span></div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="lightbox-inner">
+      <img alt="Expanded photograph" />
+      <div class="lightbox-bar">
+        <div data-lightbox-caption></div>
+        <button class="lightbox-close" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer"><div class="container"><small>© <span id="year"></span> YOUR BRAND</small></div></footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

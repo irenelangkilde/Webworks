@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact • YOUR BRAND Photography</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html"><div class="brand-badge" aria-hidden="true"></div><div class="brand-name"><strong>YOUR BRAND</strong><span>Photography • City, State</span></div></a>
+        <nav class="navlinks" aria-label="Primary navigation">
+          <a href="about.html">About</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a>
+          <a href="portfolio.html">Portfolio</a><a href="reviews.html">Reviews</a><a href="contact.html">Contact</a><a href="documents.html">Documents</a>
+        </nav>
+        <div class="cta"><a class="btn ghost" href="pricing.html">Pricing</a><a class="btn primary" href="documents.html">Documents</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="card page-card">
+        <h1>Contact</h1>
+        <p>Send an inquiry and I’ll respond with availability, a quote, and next steps.</p>
+
+        <div class="cols" style="margin-top:14px;">
+          <div>
+            <!-- Simple mailto form (static hosting friendly).
+                 For production, connect to Formspree/Netlify Forms/a backend endpoint. -->
+            <form class="form" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+              <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div class="field">
+                <label for="type">Session type</label>
+                <select id="type" name="session_type" required>
+                  <option value="">Select…</option>
+                  <option>Portrait</option>
+                  <option>Couples / Engagement</option>
+                  <option>Family</option>
+                  <option>Brand / Headshots</option>
+                  <option>Event</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="date">Preferred date range</label>
+                <input id="date" name="date_range" placeholder="e.g., March 10–25" />
+              </div>
+              <div class="field">
+                <label for="message">Tell me what you’re looking for</label>
+                <textarea id="message" name="message" placeholder="Goals, location ideas, number of people, any must-have shots…"></textarea>
+              </div>
+              <button class="btn primary" type="submit">Send Inquiry</button>
+              <div class="note">
+                If you prefer, email directly: <b>youremail@example.com</b> • Phone: <b>(555) 555-5555</b>
+              </div>
+            </form>
+          </div>
+
+          <div class="card page-card" style="padding:16px;">
+            <h2 class="h2">Next steps</h2>
+            <p class="small">A typical booking workflow:</p>
+            <ol class="list">
+              <li>We confirm date, location, and package</li>
+              <li>You review and sign the session contract</li>
+              <li>Retainer paid to reserve the date</li>
+              <li>Session + gallery delivery</li>
+            </ol>
+            <hr class="sep" />
+            <a class="btn" href="documents.html">View contracts & forms</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container"><small>© <span id="year"></span> YOUR BRAND</small></div></footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
