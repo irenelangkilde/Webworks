@@ -1,0 +1,8 @@
+Signature
+sig1=:7R4G61kC1Cg3SabBZk15CrktzRsUvsTMPFLZ3412T5oePoKnHVLiZrCclsjfMUzMGHXjt9TDq4KYIOr5MnfqAQ==:
+
+Signature-Input
+sig1=("@authority" "signature-agent");keyid="FZhBoubzJDfpJUPLUmyg5OTEuggRhXFStBseUXjMACE";nonce="9CtEpL7s19NEtTsFelYqQ+YUupjltq6eQAhR8ijI+KuPK9mZDwEvN3e/hfrh2q1b6Kq637UjFuVeYRXnZX369A==";tag="web-bot-auth";created=1769214118;expires=1770510118
+
+Signature-Agent
+"https://shopify.com"
