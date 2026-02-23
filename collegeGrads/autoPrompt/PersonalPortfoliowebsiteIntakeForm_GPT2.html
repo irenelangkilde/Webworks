@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Portfolio Website Intake Form</title>
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:#0f172a;
+  color:#e5e7eb;
+}
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:30px;
+  background:#1e293b;
+  border-radius:12px;
+}
+h2{margin-top:0}
+input,textarea,select{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:6px;
+  border:1px solid #334155;
+  background:#0f172a;
+  color:white;
+}
+label{font-size:14px;display:block;margin-top:14px}
+button{
+  padding:10px 18px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  margin:10px 5px 0 0;
+}
+.primary{background:#4f46e5;color:white}
+.secondary{background:#334155;color:white}
+.progress{
+  height:8px;
+  background:#334155;
+  border-radius:5px;
+  margin-bottom:20px;
+}
+.progress-bar{
+  height:100%;
+  width:33%;
+  background:#6366f1;
+  border-radius:5px;
+  transition:0.3s;
+}
+.hidden{display:none}
+.success{background:#065f46;padding:15px;border-radius:8px;margin-top:20px}
+.link-box{margin-top:15px}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+<form id="intakeForm">
+
+<!-- PAGE 1 -->
+<div id="page1">
+<h2>Basic Information</h2>
+
+<label>Name*</label>
+<input type="text" id="name" required>
+
+<label>Email*</label>
+<input type="email" id="email" required>
+
+<label>Phone</label>
+<input type="tel" id="phone">
+
+<label>Major</label>
+<input type="text" id="major">
+
+<label>Specialization</label>
+<input type="text" id="specialization">
+
+<label>LinkedIn URL</label>
+<input type="url" id="linkedin">
+
+<button type="button" class="primary" onclick="nextPage(2)">Next</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="hidden">
+<h2>Optional Portfolio Resources</h2>
+
+<button type="button" class="secondary" onclick="prevPage(1)">Back</button>
+<button type="button" class="primary" onclick="nextPage(3)">Next</button>
+
+<label>Files (PDF, DOC, DOCX)</label>
+<input type="file" multiple>
+<textarea placeholder="How should we use these files?"></textarea>
+
+<p>
+Tip: <a href="#" onclick="showLinkedInHelp()">download a PDF of your LinkedIn profile</a>
+</p>
+
+<label>Website URLs</label>
+<input type="url">
+<textarea placeholder="How should we use this URL?"></textarea>
+
+<label>Images</label>
+<input type="file" multiple accept="image/*">
+<textarea placeholder="How should we use these images?"></textarea>
+
+<label>Videos</label>
+<input type="file" multiple accept="video/*">
+<textarea placeholder="How should we use these videos?"></textarea>
+
+<label>HTML</label>
+<textarea></textarea>
+<textarea placeholder="How should we use this HTML?"></textarea>
+
+<label>Markdown</label>
+<textarea></textarea>
+<textarea placeholder="How should we use this Markdown?"></textarea>
+
+<label>Text</label>
+<textarea></textarea>
+
+<label>
+<input type="checkbox" id="copyrightCheck" required>
+I have the copyright or written permission to use these resources, or I only want to use it as inspiration; please generate something different enough to avoid copyright infringement.*
+</label>
+
+<button type="button" class="secondary" onclick="prevPage(1)">Back</button>
+<button type="button" class="primary" onclick="nextPage(3)">Next</button>
+
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="hidden">
+<h2>Target Position</h2>
+
+<button type="button" class="secondary" onclick="prevPage(2)">Back</button>
+
+<label>Desired Position</label>
+<input type="text" id="position">
+
+<label>Job Position Ad</label>
+<textarea id="jobAd"></textarea>
+
+<button type="submit" class="primary">Submit</button>
+<button type="button" ondblclick="resetForm()">Reset (Double Click)</button>
+
+<div id="successMessage" class="success hidden"></div>
+<div id="generatedLink" class="link-box"></div>
+
+</div>
+
+</form>
+</div>
+
+<script>
+function nextPage(page){
+  if(page===2){
+    if(!document.getElementById("name").value ||
+       !document.getElementById("email").value){
+         alert("Name and Email are required.");
+         return;
+       }
+  }
+  if(page===3){
+    if(!document.getElementById("copyrightCheck").checked){
+      alert("You must confirm copyright.");
+      return;
+    }
+  }
+  document.querySelectorAll("#page1,#page2,#page3").forEach(p=>p.classList.add("hidden"));
+  document.getElementById("page"+page).classList.remove("hidden");
+  document.getElementById("progressBar").style.width = (page*33)+"%";
+}
+
+function prevPage(page){
+  document.querySelectorAll("#page1,#page2,#page3").forEach(p=>p.classList.add("hidden"));
+  document.getElementById("page"+page).classList.remove("hidden");
+  document.getElementById("progressBar").style.width = (page*33)+"%";
+}
+
+document.getElementById("phone").addEventListener("input",function(e){
+  let x=e.target.value.replace(/\D/g,'').slice(0,10);
+  if(x.length>=6)
+    e.target.value=`(${x.slice(0,3)}) ${x.slice(3,6)}-${x.slice(6)}`;
+  else if(x.length>=3)
+    e.target.value=`(${x.slice(0,3)}) ${x.slice(3)}`;
+  else e.target.value=x;
+});
+
+function showLinkedInHelp(){
+  alert("Open your LinkedIn profile > Click 'More' > Select 'Save to PDF'.");
+}
+
+document.getElementById("intakeForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const data={
+    name: name.value,
+    email: email.value,
+    major: major.value,
+    specialization: specialization.value,
+    linkedin: linkedin.value,
+    position: position.value,
+    jobAd: jobAd.value
+  };
+
+  console.log("Form Data:",data);
+
+  const newWindow=window.open("","_blank");
+  newWindow.document.write(`
+    <html><head><title>${data.name} Portfolio</title></head>
+    <body style="font-family:Arial;padding:40px">
+    <h1>${data.name}</h1>
+    <h3>${data.position || data.major}</h3>
+    <p><strong>Email:</strong> ${data.email}</p>
+    <p><strong>LinkedIn:</strong> <a href="${data.linkedin}">${data.linkedin}</a></p>
+    <hr>
+    <h2>About Me</h2>
+    <p>A motivated ${data.major} graduate specializing in ${data.specialization}.</p>
+    <h2>Target Role</h2>
+    <p>${data.jobAd}</p>
+    </body></html>
+  `);
+
+  document.getElementById("successMessage").classList.remove("hidden");
+  document.getElementById("successMessage").innerText="Portfolio generated successfully!";
+
+  document.getElementById("generatedLink").innerHTML=
+  "<a href='"+newWindow.location.href+"' target='_blank'>View Generated Portfolio</a>";
+});
+
+function resetForm(){
+  document.getElementById("intakeForm").reset();
+  location.reload();
+}
+</script>
+</body>
+</html>
