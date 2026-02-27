@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Grads Form</title>
+    <title>College Graduates Intake Form</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -21,10 +21,10 @@
             padding: 20px;
         }
 
-        .container {
+        .form-container {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 100%;
             padding: 40px;
@@ -34,43 +34,75 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 40px;
-            gap: 10px;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
         }
 
         .progress-step {
-            flex: 1;
-            height: 4px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             background: #e0e0e0;
-            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
             position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
         }
 
         .progress-step.active {
             background: #667eea;
+            color: white;
         }
 
-        .form-section {
+        .progress-step.completed {
+            background: #4caf50;
+            color: white;
+        }
+
+        .form-page {
             display: none;
         }
 
-        .form-section.active {
+        .form-page.active {
             display: block;
-            animation: fadeIn 0.3s ease-in;
+            animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
         h2 {
             color: #333;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             font-size: 24px;
+        }
+
+        .page-description {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
         }
 
         .form-group {
@@ -80,28 +112,37 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
             font-weight: 500;
+            color: #333;
             font-size: 14px;
         }
 
-        .optional-label {
-            color: #999;
-            font-weight: normal;
-            font-size: 12px;
+        .required::after {
+            content: ' *';
+            color: #e74c3c;
         }
 
-        input, select, textarea {
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        textarea,
+        select {
             width: 100%;
-            padding: 12px;
+            padding: 10px 12px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 4px;
             font-size: 14px;
             font-family: inherit;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="url"]:focus,
+        textarea:focus,
+        select:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -112,396 +153,871 @@
             min-height: 100px;
         }
 
-        .button-group {
+        .upload-section {
+            margin: 15px 0;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #fafafa;
+        }
+
+        .upload-section:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .upload-section input[type="file"] {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .checkbox-group {
             display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+            cursor: pointer;
+            width: auto;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+            font-size: 13px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             gap: 15px;
+            margin: 15px 0;
+        }
+
+        .color-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .color-box {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-option input[type="radio"] {
+            display: none;
+        }
+
+        .color-option input[type="radio"]:checked + .color-box {
+            border-color: #333;
+            transform: scale(1.05);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
             margin-top: 30px;
             justify-content: space-between;
         }
 
-        .button-group.single {
-            justify-content: flex-end;
-        }
-
-        button {
-            padding: 12px 30px;
+        .btn {
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            flex: 1;
         }
 
         .btn-primary {
             background: #667eea;
             color: white;
-            flex: 1;
-            max-width: 150px;
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
             background: #f0f0f0;
             color: #333;
-            flex: 1;
-            max-width: 150px;
         }
 
-        .btn-secondary:hover {
+        .btn-secondary:hover:not(:disabled) {
             background: #e0e0e0;
-            transform: translateY(-2px);
         }
 
-        .error {
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .error-message {
             color: #e74c3c;
-            font-size: 12px;
+            font-size: 13px;
             margin-top: 5px;
             display: none;
         }
 
-        .error.show {
+        .error-message.show {
             display: block;
         }
 
-        .major-fields {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            border-left: 4px solid #667eea;
-        }
-
-        .major-fields h4 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .field-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .field-checkbox input[type="checkbox"] {
-            width: auto;
-            cursor: pointer;
-        }
-
-        .field-checkbox label {
-            margin: 0;
-            cursor: pointer;
-            font-weight: normal;
-        }
-
         .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
             display: none;
+            padding: 20px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            border-radius: 4px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
         .success-message.show {
             display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .reset-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .reset-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .reset-link a:hover {
+            text-decoration: underline;
+        }
+
+        .tip {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .portfolio-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+        }
+
+        .portfolio-item-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .portfolio-item-header input,
+        .portfolio-item-header textarea {
+            width: 100%;
+        }
+
+        .color-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .color-input-group input[type="color"] {
+            width: 50px;
+            height: 40px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        .color-input-group input[type="text"] {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 25px;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .portfolio-item-header {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-step {
+                width: 35px;
+                height: 35px;
+                font-size: 12px;
+            }
+
+            .color-input-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="form-container">
         <div class="progress-bar">
-            <div class="progress-step active" id="step1"></div>
-            <div class="progress-step" id="step2"></div>
-            <div class="progress-step" id="step3"></div>
+            <div class="progress-step active" data-step="1">1</div>
+            <div class="progress-step" data-step="2">2</div>
+            <div class="progress-step" data-step="3">3</div>
+            <div class="progress-step" data-step="4">4</div>
         </div>
 
-        <!-- Form 1: Basic Information -->
-        <form id="form1" class="form-section active">
-            <h2>Basic Information</h2>
-            
-            <div class="form-group">
-                <label for="name">Name <span style="color: #e74c3c;">*</span></label>
-                <input type="text" id="name" name="name" required>
-                <div class="error" id="nameError">Name is required</div>
-            </div>
-
-            <div class="form-group">
-                <label for="major">Major <span style="color: #e74c3c;">*</span></label>
-                <select id="major" name="major" required>
-                    <option value="">Select your major</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Business">Business</option>
-                    <option value="Liberal Arts">Liberal Arts</option>
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Physics">Physics</option>
-                    <option value="Other">Other</option>
-                </select>
-                <div class="error" id="majorError">Major is required</div>
-            </div>
-
-            <div class="form-group">
-                <label for="specialization">Specialization</label>
-                <input type="text" id="specialization" name="specialization" placeholder="e.g., Full Stack Development, Data Science">
-            </div>
-
-            <div class="form-group">
-                <label for="contact">Contact Info <span style="color: #e74c3c;">*</span></label>
-                <input type="email" id="contact" name="contact" placeholder="your@email.com" required>
-                <div class="error" id="contactError">Valid email is required</div>
-            </div>
-
-            <div class="button-group single">
-                <button type="button" class="btn-primary" onclick="nextForm(1)">Next</button>
-            </div>
-        </form>
-
-        <!-- Form 2: Links and Resume -->
-        <form id="form2" class="form-section">
-            <h2>Professional Links</h2>
-            <p style="color: #999; margin-bottom: 20px; font-size: 14px;">All fields are optional</p>
-
-            <div class="form-group">
-                <label for="linkedin">LinkedIn Link <span class="optional-label">(Optional)</span></label>
-                <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
-                <div class="error" id="linkedinError">Please enter a valid URL</div>
-            </div>
-
-            <div class="form-group">
-                <label for="handshake">Handshake Link <span class="optional-label">(Optional)</span></label>
-                <input type="url" id="handshake" name="handshake" placeholder="https://handshake.com/...">
-                <div class="error" id="handshakeError">Please enter a valid URL</div>
-            </div>
-
-            <div class="form-group">
-                <label for="resume">Resume <span class="optional-label">(Optional)</span></label>
-                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
-                <div style="font-size: 12px; color: #999; margin-top: 5px;">Accepted formats: PDF, DOC, DOCX</div>
-            </div>
-
-            <div class="button-group">
-                <button type="button" class="btn-secondary" onclick="previousForm(2)">Back</button>
-                <button type="button" class="btn-primary" onclick="nextForm(2)">Next</button>
-            </div>
-        </form>
-
-        <!-- Form 3: Major-Specific Information -->
-        <form id="form3" class="form-section">
-            <h2>Additional Information</h2>
-
-            <div class="form-group">
-                <label for="about">About Me</label>
-                <textarea id="about" name="about" placeholder="Tell us about yourself..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="experience">Experience</label>
-                <textarea id="experience" name="experience" placeholder="Describe your professional experience..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="education">Education</label>
-                <textarea id="education" name="education" placeholder="Share your educational background..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="skills">Skills</label>
-                <textarea id="skills" name="skills" placeholder="List your skills (comma-separated or separate lines)..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="research">Research</label>
-                <textarea id="research" name="research" placeholder="Describe any research projects..."></textarea>
-            </div>
-
-            <div class="major-fields">
-                <h4>Major-Specific Fields</h4>
-                <div class="field-checkbox">
-                    <input type="checkbox" id="field1" name="majorField1">
-                    <label for="field1">Additional certification</label>
-                </div>
-                <div class="field-checkbox">
-                    <input type="checkbox" id="field2" name="majorField2">
-                    <label for="field2">Projects portfolio</label>
-                </div>
-                <div class="field-checkbox">
-                    <input type="checkbox" id="field3" name="majorField3">
-                    <label for="field3">Publications</label>
-                </div>
-            </div>
-
-            <div class="button-group">
-                <button type="button" class="btn-secondary" onclick="previousForm(3)">Back</button>
-                <button type="submit" class="btn-primary" onclick="submitForm(event)">Submit</button>
-            </div>
-        </form>
-
         <div class="success-message" id="successMessage">
-            ✓ Form submitted successfully! We'll be in touch soon.
+            <strong>Success!</strong> Your intake form has been submitted. We'll use this information to build your portfolio website.
+        </div>
+
+        <form id="intakeForm">
+            <!-- Page 1: Basic Information -->
+            <div class="form-page active" data-page="1">
+                <h2>Basic Information</h2>
+                <p class="page-description">Let's start with your essential information</p>
+
+                <div class="form-group">
+                    <label for="name" class="required">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name">
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="required">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                </div>
+
+                <div class="form-group">
+                    <label for="major" class="required">Major</label>
+                    <input type="text" id="major" name="major" placeholder="e.g., Computer Science, Business Administration">
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialization">Specialization</label>
+                    <input type="text" id="specialization" name="specialization" placeholder="e.g., Machine Learning, Marketing">
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn URL</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    <p class="tip">For employer reference</p>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-primary" onclick="nextPage()">Next</button>
+                </div>
+            </div>
+
+            <!-- Page 2: Portfolio Resources -->
+            <div class="form-page" data-page="2">
+                <h2>Portfolio Resources</h2>
+                <p class="page-description">Upload or paste pre-existing templates, examples, and components</p>
+
+                <div class="form-group">
+                    <label>Files (PDF, DOC, DOCX)</label>
+                    <p class="tip">Such as Resume, LinkedIn profile. <a href="#" onclick="showLinkedInTip(event)" style="color: #667eea; text-decoration: underline;">Learn how to download a PDF of your LinkedIn profile</a></p>
+                    <div class="upload-section" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon">📁</div>
+                        <div style="font-weight: 600;">Click to upload files</div>
+                        <input type="file" id="fileInput" name="files" multiple accept=".pdf,.doc,.docx">
+                    </div>
+                    <textarea name="filesDescription" placeholder="Describe how you want these files to be used..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Website URLs</label>
+                    <textarea name="websiteUrls" placeholder="Paste any website addresses (one per line)..."></textarea>
+                    <textarea name="websiteDescription" placeholder="Describe how you want these to be used..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Images</label>
+                    <div class="upload-section" onclick="document.getElementById('imageInput').click()">
+                        <div class="upload-icon">🖼️</div>
+                        <div style="font-weight: 600;">Click to upload images</div>
+                        <input type="file" id="imageInput" name="images" multiple accept="image/*">
+                    </div>
+                    <textarea name="imagesDescription" placeholder="Describe how you want these images to be used..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Videos</label>
+                    <textarea name="videosUrls" placeholder="Paste any video URLs (YouTube, Vimeo, etc.)..."></textarea>
+                    <textarea name="videosDescription" placeholder="Describe how you want these to be used..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>HTML/Markdown/Text</label>
+                    <textarea name="codeContent" placeholder="Paste any HTML, Markdown, or text content..."></textarea>
+                    <textarea name="codeDescription" placeholder="Describe how you want this to be used..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="sectionTypes">Portfolio Section Types</label>
+                    <select name="sectionTypes" id="sectionTypes">
+                        <option value="">Select section types...</option>
+                        <option value="about">★ About/Summary (Recommended)</option>
+                        <option value="experience">★ Work Experience (Recommended)</option>
+                        <option value="projects">★ Projects (Recommended)</option>
+                        <option value="skills">Skills</option>
+                        <option value="education">Education</option>
+                        <option value="testimonials">Testimonials</option>
+                        <option value="blog">Blog/Articles</option>
+                        <option value="contact">Contact</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="copyright" name="copyright">
+                    <label for="copyright">I have the copyright or written permission to use these resources, or I only want to use it as inspiration; please generate something different enough to avoid copyright infringement.</label>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="previousPage()">Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextPage()">Next</button>
+                </div>
+            </div>
+
+            <!-- Page 3: Color Scheme -->
+            <div class="form-page" data-page="3">
+                <h2>Color Scheme</h2>
+                <p class="page-description">Choose a color theme or enter custom colors</p>
+
+                <fieldset style="border: none; padding: 0;">
+                    <legend style="margin-bottom: 15px; font-weight: 600;">Pre-designed Themes</legend>
+                    
+                    <div class="color-grid">
+                        <div class="color-option">
+                            <input type="radio" name="colorTheme" value="theme1" id="theme1">
+                            <label for="theme1">
+                                <div class="color-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                            </label>
+                        </div>
+                        <div class="color-option">
+                            <input type="radio" name="colorTheme" value="theme2" id="theme2">
+                            <label for="theme2">
+                                <div class="color-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                            </label>
+                        </div>
+                        <div class="color-option">
+                            <input type="radio" name="colorTheme" value="theme3" id="theme3">
+                            <label for="theme3">
+                                <div class="color-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                            </label>
+                        </div>
+                        <div class="color-option">
+                            <input type="radio" name="colorTheme" value="theme4" id="theme4">
+                            <label for="theme4">
+                                <div class="color-box" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                            </label>
+                        </div>
+                        <div class="color-option">
+                            <input type="radio" name="colorTheme" value="theme5" id="theme5">
+                            <label for="theme5">
+                                <div class="color-box" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                    <h3 style="font-size: 16px; margin-bottom: 15px;">Custom Colors</h3>
+                    
+                    <div class="form-group">
+                        <label for="colorPrimary">Primary Color</label>
+                        <div class="color-input-group">
+                            <input type="color" id="colorPrimary" name="colorPrimary" value="#667eea" onchange="syncColorHex('colorPrimary')">
+                            <input type="text" class="color-hex" id="colorPrimaryHex" name="colorPrimaryHex" value="#667eea" placeholder="#000000" onchange="syncColorPicker('colorPrimary')">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colorSecondary">Secondary Color</label>
+                        <div class="color-input-group">
+                            <input type="color" id="colorSecondary" name="colorSecondary" value="#764ba2" onchange="syncColorHex('colorSecondary')">
+                            <input type="text" class="color-hex" id="colorSecondaryHex" name="colorSecondaryHex" value="#764ba2" placeholder="#000000" onchange="syncColorPicker('colorSecondary')">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colorAccent">Accent Color</label>
+                        <div class="color-input-group">
+                            <input type="color" id="colorAccent" name="colorAccent" value="#f39c12" onchange="syncColorHex('colorAccent')">
+                            <input type="text" class="color-hex" id="colorAccentHex" name="colorAccentHex" value="#f39c12" placeholder="#000000" onchange="syncColorPicker('colorAccent')">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colorDark">Dark Color</label>
+                        <div class="color-input-group">
+                            <input type="color" id="colorDark" name="colorDark" value="#333333" onchange="syncColorHex('colorDark')">
+                            <input type="text" class="color-hex" id="colorDarkHex" name="colorDarkHex" value="#333333" placeholder="#000000" onchange="syncColorPicker('colorDark')">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colorLight">Light Color</label>
+                        <div class="color-input-group">
+                            <input type="color" id="colorLight" name="colorLight" value="#f9f9f9" onchange="syncColorHex('colorLight')">
+                            <input type="text" class="color-hex" id="colorLightHex" name="colorLightHex" value="#f9f9f9" placeholder="#ffffff" onchange="syncColorPicker('colorLight')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="previousPage()">Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextPage()">Next</button>
+                </div>
+            </div>
+
+            <!-- Page 4: Job Position -->
+            <div class="form-page" data-page="4">
+                <h2>Desired Position</h2>
+                <p class="page-description">Tell us about the position you're targeting</p>
+
+                <div class="form-group">
+                    <label for="position">Desired Job Position</label>
+                    <input type="text" id="position" name="position" placeholder="e.g., Senior Software Engineer, Product Manager">
+                </div>
+
+                <div class="form-group">
+                    <label for="jobAd">Job Position Ad/Description</label>
+                    <p class="tip">Paste a job description that represents your target position (this helps us tailor your portfolio)</p>
+                    <textarea id="jobAd" name="jobAd" placeholder="Paste the job position ad or description here..."></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="previousPage()">Back</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="reset-link">
+            <a onclick="resetForm(event)">Reset Form</a>
         </div>
     </div>
 
     <script>
-        let currentForm = 1;
-let dragSrcRow  = null;
+        let currentPage = 1;
+        let resetClickCount = 0;
+        let resetTimeout;
 
-        function showForm(formNumber) {
-            // Hide all forms
-            document.querySelectorAll('.form-section').forEach(form => {
-                form.classList.remove('active');
-            });
-
-            // Show the requested form
-            document.getElementById(`form${formNumber}`).classList.add('active');
-
-            // Update progress bar
-            document.querySelectorAll('.progress-step').forEach((step, index) => {
-                if (index < formNumber) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
-                }
-            });
-
-            currentForm = formNumber;
-            window.scrollTo(0, 0);
+        function syncColorHex(baseId) {
+            const colorInput = document.getElementById(baseId);
+            const hexInput = document.getElementById(baseId + 'Hex');
+            if (colorInput && hexInput) {
+                hexInput.value = colorInput.value;
+            }
         }
 
-        function validateForm(formNumber) {
+        function syncColorPicker(baseId) {
+            const colorInput = document.getElementById(baseId);
+            const hexInput = document.getElementById(baseId + 'Hex');
+            if (colorInput && hexInput) {
+                try {
+                    colorInput.value = hexInput.value;
+                } catch (e) {
+                    // Invalid color format
+                }
+            }
+        }
+
+        function validatePage(page) {
+            const form = document.getElementById('intakeForm');
             let isValid = true;
 
-            if (formNumber === 1) {
-                // Validate Name
-                const name = document.getElementById('name');
+            if (page === 1) {
+                const name = form.querySelector('input[name="name"]');
+                const email = form.querySelector('input[name="email"]');
+                const major = form.querySelector('input[name="major"]');
+
+                // Clear previous errors
+                form.querySelectorAll('.error-message').forEach(e => e.classList.remove('show'));
+
                 if (!name.value.trim()) {
-                    document.getElementById('nameError').classList.add('show');
+                    showError(name, 'Name is required');
                     isValid = false;
-                } else {
-                    document.getElementById('nameError').classList.remove('show');
+                }
+                if (!email.value.trim()) {
+                    showError(email, 'Email is required');
+                    isValid = false;
+                } else if (!isValidEmail(email.value)) {
+                    showError(email, 'Please enter a valid email');
+                    isValid = false;
+                }
+                if (!major.value.trim()) {
+                    showError(major, 'Major is required');
+                    isValid = false;
                 }
 
-                // Validate Major
-                const major = document.getElementById('major');
-                if (!major.value) {
-                    document.getElementById('majorError').classList.add('show');
-                    isValid = false;
-                } else {
-                    document.getElementById('majorError').classList.remove('show');
-                }
-
-                // Validate Contact
-                const contact = document.getElementById('contact');
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(contact.value)) {
-                    document.getElementById('contactError').classList.add('show');
-                    isValid = false;
-                } else {
-                    document.getElementById('contactError').classList.remove('show');
-                }
-            } else if (formNumber === 2) {
-                // Validate URLs if provided
-                const linkedin = document.getElementById('linkedin').value;
-                const handshake = document.getElementById('handshake').value;
-
-                if (linkedin && !isValidUrl(linkedin)) {
-                    document.getElementById('linkedinError').classList.add('show');
-                    isValid = false;
-                } else {
-                    document.getElementById('linkedinError').classList.remove('show');
-                }
-
-                if (handshake && !isValidUrl(handshake)) {
-                    document.getElementById('handshakeError').classList.add('show');
-                    isValid = false;
-                } else {
-                    document.getElementById('handshakeError').classList.remove('show');
+                // Format phone if present
+                const phoneInput = form.querySelector('input[name="phone"]');
+                if (phoneInput.value.trim()) {
+                    phoneInput.value = formatPhone(phoneInput.value);
                 }
             }
 
             return isValid;
         }
 
-        function isValidUrl(string) {
-            try {
-                new URL(string);
-                return true;
-            } catch (_) {
-                return false;
+        function generateSummaryFile(formData) {
+            // Create a comprehensive HTML summary file
+            const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Website - ${formData.page1.name}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: ${formData.page3.colors.primary};
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: ${formData.page3.colors.secondary};
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .profile-info {
+            background: ${formData.page3.colors.light};
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid ${formData.page3.colors.accent};
+        }
+        
+        .profile-info p {
+            margin: 10px 0;
+        }
+        
+        .label {
+            font-weight: 600;
+            color: ${formData.page3.colors.dark};
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: ${formData.page3.colors.primary};
+            border-bottom: 2px solid ${formData.page3.colors.accent};
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .resource-item {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 3px solid ${formData.page3.colors.secondary};
+        }
+        
+        .resource-title {
+            font-weight: 600;
+            color: ${formData.page3.colors.primary};
+            margin-bottom: 5px;
+        }
+        
+        .resource-description {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .color-swatch {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            margin-right: 10px;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+        
+        .meta {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>${formData.page1.name}</h1>
+        <p class="subtitle">${formData.page4.desiredPosition || 'Portfolio Website'}</p>
+        
+        <div class="profile-info">
+            <p><span class="label">Email:</span> ${formData.page1.email}</p>
+            ${formData.page1.phone ? '<p><span class="label">Phone:</span> ' + formData.page1.phone + '</p>' : ''}
+            <p><span class="label">Major:</span> ${formData.page1.major}</p>
+            ${formData.page1.specialization ? '<p><span class="label">Specialization:</span> ' + formData.page1.specialization + '</p>' : ''}
+            ${formData.page1.linkedin ? '<p><span class="label">LinkedIn:</span> <a href="' + formData.page1.linkedin + '" target="_blank">View Profile</a></p>' : ''}
+        </div>
+        
+        <div class="section">
+            <h2>Portfolio Resources</h2>
+            ${formData.page2.filesDescription ? '<div class="resource-item"><div class="resource-title">📄 Files</div><div class="resource-description">' + formData.page2.filesDescription + '</div></div>' : ''}
+            ${formData.page2.websiteDescription ? '<div class="resource-item"><div class="resource-title">🌐 Websites</div><div class="resource-description">' + formData.page2.websiteDescription + '</div></div>' : ''}
+            ${formData.page2.imagesDescription ? '<div class="resource-item"><div class="resource-title">🖼️ Images</div><div class="resource-description">' + formData.page2.imagesDescription + '</div></div>' : ''}
+            ${formData.page2.videosDescription ? '<div class="resource-item"><div class="resource-title">🎬 Videos</div><div class="resource-description">' + formData.page2.videosDescription + '</div></div>' : ''}
+            ${formData.page2.codeDescription ? '<div class="resource-item"><div class="resource-title">💻 Code</div><div class="resource-description">' + formData.page2.codeDescription + '</div></div>' : ''}
+            ${formData.page2.sectionTypes ? '<div class="resource-item"><div class="resource-title">📋 Portfolio Sections</div><div class="resource-description">' + formData.page2.sectionTypes + '</div></div>' : ''}
+        </div>
+        
+        <div class="section">
+            <h2>Color Scheme</h2>
+            <div>
+                <p><span class="color-swatch" style="background: ${formData.page3.colors.primary};"></span> <strong>Primary:</strong> ${formData.page3.colors.primary}</p>
+                <p style="margin-top: 10px;"><span class="color-swatch" style="background: ${formData.page3.colors.secondary};"></span> <strong>Secondary:</strong> ${formData.page3.colors.secondary}</p>
+                <p style="margin-top: 10px;"><span class="color-swatch" style="background: ${formData.page3.colors.accent};"></span> <strong>Accent:</strong> ${formData.page3.colors.accent}</p>
+                <p style="margin-top: 10px;"><span class="color-swatch" style="background: ${formData.page3.colors.dark};"></span> <strong>Dark:</strong> ${formData.page3.colors.dark}</p>
+                <p style="margin-top: 10px;"><span class="color-swatch" style="background: ${formData.page3.colors.light};"></span> <strong>Light:</strong> ${formData.page3.colors.light}</p>
+            </div>
+        </div>
+        
+        ${formData.page4.desiredPosition || formData.page4.jobDescription ? '<div class="section"><h2>Target Position</h2>' + (formData.page4.desiredPosition ? '<p><strong>Position:</strong> ' + formData.page4.desiredPosition + '</p>' : '') + (formData.page4.jobDescription ? '<div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 10px;"><strong>Job Description:</strong><pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 13px; color: #666;">' + formData.page4.jobDescription.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre></div>' : '') + '</div>' : ''}
+        
+        <div class="meta">
+            <p><strong>Generated:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Copyright Notice:</strong> ${formData.page2.copyright ? 'Resources used as inspiration with copyright consideration' : 'Resources with proper licensing'}</p>
+        </div>
+    </div>
+</body>
+</html>`;
+
+            // Download the file
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'MyPersonalPortfolioWebsiteIntakeForm.html';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        function showError(input, message) {
+            const errorDiv = input.parentElement.querySelector('.error-message');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.classList.add('show');
             }
         }
 
-        function nextForm(formNumber) {
-            if (validateForm(formNumber)) {
-                showForm(formNumber + 1);
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function formatPhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            if (cleaned.length === 10) {
+                return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+            }
+            return phone;
+        }
+
+        function nextPage() {
+            if (validatePage(currentPage)) {
+                if (currentPage < 4) {
+                    currentPage++;
+                    updatePage();
+                }
             }
         }
 
-        function previousForm(formNumber) {
-            showForm(formNumber - 1);
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePage();
+            }
         }
 
-        function submitForm(event) {
+        function updatePage() {
+            // Hide all pages
+            document.querySelectorAll('.form-page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show current page
+            document.querySelector(`[data-page="${currentPage}"]`).classList.add('active');
+
+            // Update progress bar
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                if (stepNum === currentPage) {
+                    step.classList.add('active');
+                } else if (stepNum < currentPage) {
+                    step.classList.add('completed');
+                }
+            });
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function resetForm(event) {
             event.preventDefault();
+            resetClickCount++;
+
+            if (resetClickCount === 2) {
+                document.getElementById('intakeForm').reset();
+                document.getElementById('successMessage').classList.remove('show');
+                currentPage = 1;
+                updatePage();
+                resetClickCount = 0;
+                clearTimeout(resetTimeout);
+            } else {
+                resetTimeout = setTimeout(() => {
+                    resetClickCount = 0;
+                }, 2000);
+            }
+        }
+
+        function showLinkedInTip(event) {
+            event.preventDefault();
+            alert(`How to Download Your LinkedIn Profile as PDF:
+
+1. Open your LinkedIn profile
+2. Click on "Me" in the top navigation
+3. Select "View profile"
+4. Click the "More" button (•••) at the top right
+5. Select "Save to PDF"
+6. Your profile will download as a PDF file
+
+This PDF is great for including in your portfolio resources!`);
+        }
+
+        // Form submission
+        document.getElementById('intakeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
             // Collect all form data
-            const formData = {
-                // Form 1
-                name: document.getElementById('name').value,
-                major: document.getElementById('major').value,
-                specialization: document.getElementById('specialization').value,
-                contact: document.getElementById('contact').value,
-                // Form 2
-                linkedin: document.getElementById('linkedin').value,
-                handshake: document.getElementById('handshake').value,
-                resume: document.getElementById('resume').value,
-                // Form 3
-                about: document.getElementById('about').value,
-                experience: document.getElementById('experience').value,
-                education: document.getElementById('education').value,
-                skills: document.getElementById('skills').value,
-                research: document.getElementById('research').value,
+            const formData = new FormData(this);
+            const data = {
+                timestamp: new Date().toISOString(),
+                page1: {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    major: formData.get('major'),
+                    specialization: formData.get('specialization'),
+                    linkedin: formData.get('linkedin')
+                },
+                page2: {
+                    filesDescription: formData.get('filesDescription'),
+                    websiteUrls: formData.get('websiteUrls'),
+                    websiteDescription: formData.get('websiteDescription'),
+                    imagesDescription: formData.get('imagesDescription'),
+                    videosUrls: formData.get('videosUrls'),
+                    videosDescription: formData.get('videosDescription'),
+                    codeContent: formData.get('codeContent'),
+                    codeDescription: formData.get('codeDescription'),
+                    sectionTypes: formData.get('sectionTypes'),
+                    copyright: formData.get('copyright') ? true : false
+                },
+                page3: {
+                    colorTheme: formData.get('colorTheme'),
+                    colors: {
+                        primary: formData.get('colorPrimaryHex'),
+                        secondary: formData.get('colorSecondaryHex'),
+                        accent: formData.get('colorAccentHex'),
+                        dark: formData.get('colorDarkHex'),
+                        light: formData.get('colorLightHex')
+                    }
+                },
+                page4: {
+                    desiredPosition: formData.get('position'),
+                    jobDescription: formData.get('jobAd')
+                }
             };
 
-            console.log('Form Data:', formData);
+            // Log to console
+            console.log('College Graduates Intake Form Submission:', data);
+            console.table(data);
+
+            // Generate and download summary file
+            generateSummaryFile(data);
 
             // Show success message
             document.getElementById('successMessage').classList.add('show');
 
-            // You can send the data to your server here
-            // Example:
-            // fetch('/api/submit-form', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData)
-            // });
-
-            // Reset form after 2 seconds
+            // Reset form and go back to page 1
             setTimeout(() => {
-                document.querySelectorAll('input, textarea, select').forEach(field => {
-                    if (field.type !== 'file') {
-                        field.value = '';
-                    }
-                });
-                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                    checkbox.checked = false;
-                });
-                document.getElementById('successMessage').classList.remove('show');
-                showForm(1);
+                this.reset();
+                currentPage = 1;
+                updatePage();
             }, 2000);
-        }
-
-        // Initialize
-        showForm(1);
+        });
     </script>
 </body>
 </html>

@@ -1,44 +1,66 @@
 IGNORE-LINES: lines beginning with # are comments
 Instructions for Generative AI model in double square brackets should not be communicated to users. Eg: [[Do this but don't print it.]]
 
-#PersonalPortfolioWebsiteIntakeForm.html — a complete, standalone HTML file ready to embed in your website.
+# PersonalPortfolioWebsiteIntakeForm.txt — a complete, standalone HTML file ready to embed in your website.
+# Version: 1.0.0
+# Updated: 2026-02-27
+# Model: Claude
+# Device: mobile
 
 [[I'd like a college graduate intake form with the following specifications.  The goal of these instructions 
     is to help a job hunter build an impactful portfolio website as quickly, cheaply and easily as possible, minimizing 
     the user's expenditure of time, money, and energy while remaining true to their actual profile and molding the content. So we 
     want to gather as much pre-existing information as is available and leverage AI as much as possible.]]
 
-Page 1: Basic Information [[single column, responsive for mobile]]
+Page 1: Basic Information [[single column, mobile responsive]]
 Name (required)
 Email (required)
 Phone [pretty formatted without any comment]
 Major [[short text input, not dropdown]]
 Specialization 
 LinkedIn URL [[For employer reference]]
-Button: Next
+Buttons: Reset (must be double-clicked), Next
 
-Page 2: Optional Portfolio Resources: Upload or paste any pre-existing resume, templates, example websites and/or components to be used as models for content and/or style.
-[[For each entry, show adjacent to it a text box for the user to describe how they want it to be used.]]
+Page 2: Optional Portfolio Resources---Upload or paste pre-existing resume(s), templates, examples and/or components to be used as models for content, layout and/or style.
 [[Avoid giving user redundant instructions.]]
-* Files (PDF, DOC, DOCX) such as Resume, LinkedIn profile.
-   Tip to user: Learn how to download a PDF of your LinkedIn profile. [[Make a link from "download a PDF of your LinkedIn profile" to a pop-up containig pretty-fied version of HumanInstructionsForPrintingLinkedInProfile.md]]
-* Images
-* Videos
-* HTML
-* Markdown
-* Text--- Tip: Click to see a dropdown list of potential sections. [[based on "Portfolio Section Types.txt" and put a star on the most highly recommended ones (according to AI).  Use AI to suggest additional types, if warranted, based on all preceding information.]]    
+* Upload Files such as Resume or LinkedIn profile: PDF, DOC, DOCX; Images; Videos; HTML, Markdown, Text.
+    Show two adjacent boxes: the first is the upload button, the second is a long text box for the user to describe how they want the Content box to be used.  The name of each file that is uploaded should be listed under the "Upload File" box.
+    Tip to user: Learn how to download a PDF of your LinkedIn profile. [[Make a link from "download a PDF of your LinkedIn profile" to a pop-up containing pretty-fied version of HumanInstructionsForPrintingLinkedInProfile.md]]
+    [[Allow user to upload files]]
 
-Required checkbox labeled "I have the copyright or written permission to use these resources, or I only want to use it as inspiration; please generate something different enough to avoid copyright infringement."
+* Website addresses (public URLs only; eg. video intro from Youtube, GitHub portfolio): [[short text; 2nd adjacent box is for the user to describe how they want the URL in the first box to be used.]]
+
+* Text: For each entry here, show four adjacent boxes: the first for the file type (HTML, Markdown, or raw); 
+   the second is for the section type, which is a dropdown box listing potential sections based on "Portfolio Section Types.txt." Put a star on the most highly recommended ones (according to AI). Place the box directly below the HTML type box.
+      Use AI to suggest additional types, if warranted, based on all preceding information. Last of all include "Other" and "None".
+   the third a long text box labelled "Content", and 
+   the fourth a long text box for the user to describe how they want the Content box to be used.
+   
+A required checkbox labeled "I have the copyright or written permission to use these resources, or I only want to use it as inspiration---please generate something different enough to avoid copyright infringement."
 Buttons at both top and bottom: Back, Next
 
-Page 3: 
-  Desired Position
+Page 3: Color scheme
+    Embed color-themes.html and display 20 options for the user to choose between.
+    Allow user to choose one of above color themes by number or else enter the color codes in hex below. Show blank short text boxes as follow:
+      1. Primary
+      2. Secondary
+      3. Accent
+      4. Dark
+      5. Light
+
+Buttons at both top and bottom: Back, Next
+
+Page 4:
+  Desired Job Position [[short text]]
   Job Position Ad [[long text]]
-  Buttons at both top and bottom: Back, Next
+  Buttons at both top and bottom: Back, Submit
 
 [[Form Features
     Progress bar showing each step progression
     Form validation (lenient for optional fields; Name required on page 1)
     All form data collected and logged to console on submission
-    Success message displayed on submit---also generate a new indepenent unique portfolio website using all the previously submitted information and display a link that the user can click on to view it. 
-    Form reset link that clears form only when double-clicked]]
+    Upon Submit, Display Success message and also generate and display a new AI prompt incorporating all the form answers]]
+
+Upon submission of form, write a summary of entire form to MyPersonalPortfolioWebsiteSummary.html
+
+Current Output File: MyPersonalPortfolioWebsiteIntakeForm.html — a complete, standalone HTML file ready to embed in website.
