@@ -536,7 +536,7 @@
         </div>
 
         <div class="success-message" id="successMessage">
-            ✓ Your portfolio was generated and opened in a new tab!
+            ✓ Done! Check your Downloads folder for MyPersonalPortfolioWebsite.html and MyPersonalPortfolioWebsiteSummary.html.
         </div>
 
         <div class="error-message" id="errorMessage"></div>
@@ -679,6 +679,8 @@
 
             console.log('Portfolio Website Form Data:', formData);
 
+            downloadSummary(formData);
+
             const generatingEl = document.getElementById('generatingMessage');
             const successEl    = document.getElementById('successMessage');
             const errorEl      = document.getElementById('errorMessage');
@@ -703,10 +705,13 @@
                     return;
                 }
 
-                // Open generated portfolio in a new tab
-                const win = window.open('', '_blank');
-                win.document.write(result.html);
-                win.document.close();
+                // Download generated portfolio
+                const portfolioBlob = new Blob([result.html], { type: 'text/html' });
+                const portfolioA = document.createElement('a');
+                portfolioA.href = URL.createObjectURL(portfolioBlob);
+                portfolioA.download = 'MyPersonalPortfolioWebsite.html';
+                portfolioA.click();
+                URL.revokeObjectURL(portfolioA.href);
 
                 successEl.classList.add('show');
 
@@ -718,6 +723,75 @@
                 errorEl.textContent = '✗ Network error: ' + err.message;
                 errorEl.classList.add('show');
             }
+        }
+
+        function downloadSummary(d) {
+            function row(label, value) {
+                if (!value) return '';
+                return `<tr><th>${label}</th><td>${String(value).replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</td></tr>`;
+            }
+            function resourceRows(list, label) {
+                if (!list || !list.length) return '';
+                return list.map((r, i) =>
+                    `<tr><th>${label} ${i + 1}</th><td>${String(r.main||'').replace(/</g,'&lt;')}<br><em>${String(r.description||'').replace(/</g,'&lt;')}</em></td></tr>`
+                ).join('');
+            }
+            const now = new Date().toLocaleString();
+            const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio Summary — ${d.name || 'Unknown'}</title>
+<style>
+  body { font-family: Segoe UI, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; color: #333; }
+  h1 { color: #667eea; margin-bottom: 4px; }
+  .meta { color: #999; font-size: 13px; margin-bottom: 30px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+  th { text-align: left; padding: 10px 14px; background: #f4f4ff; width: 180px; font-weight: 600; color: #555; vertical-align: top; }
+  td { padding: 10px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
+  h2 { color: #764ba2; font-size: 16px; margin: 28px 0 8px; border-bottom: 2px solid #eee; padding-bottom: 6px; }
+</style>
+</head>
+<body>
+<h1>Portfolio Website Summary</h1>
+<div class="meta">Generated ${now}</div>
+
+<h2>Basic Information</h2>
+<table>
+  ${row('Name', d.name)}
+  ${row('Email', d.email)}
+  ${row('Phone', d.phone)}
+  ${row('Major', d.major)}
+  ${row('Specialization', d.specialization)}
+  ${row('LinkedIn', d.linkedin)}
+</table>
+
+<h2>Target Role</h2>
+<table>
+  ${row('Desired Position', d.desiredPosition)}
+  ${row('Job Ad', d.jobAd)}
+</table>
+
+<h2>Portfolio Resources</h2>
+<table>
+  ${resourceRows(d.fileResources, 'File')}
+  ${resourceRows(d.urlResources, 'URL')}
+  ${resourceRows(d.htmlResources, 'HTML')}
+  ${resourceRows(d.markdownResources, 'Markdown')}
+  ${resourceRows(d.textResources, 'Text')}
+  ${resourceRows(d.imageResources, 'Image')}
+  ${resourceRows(d.videoResources, 'Video')}
+  ${row('Copyright acknowledged', d.copyrightAcknowledged ? 'Yes' : 'No')}
+</table>
+</body>
+</html>`;
+
+            const blob = new Blob([html], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'MyPersonalPortfolioWebsiteSummary.html';
+            a.click();
+            URL.revokeObjectURL(a.href);
         }
 
         function collectResources(containerId) {

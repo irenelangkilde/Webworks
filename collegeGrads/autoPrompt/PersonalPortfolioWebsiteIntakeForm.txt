@@ -4,8 +4,6 @@ Instructions for Generative AI model in double square brackets should not be com
 # PersonalPortfolioWebsiteIntakeForm.txt — a complete, standalone HTML file ready to embed in your website.
 # Version: 2.0.0
 # Updated: 2026-02-27
-# Model: ChatGPT
-# Device: mobile
 
 [[I'd like a college graduate intake form with the following specifications.  The goal of these instructions 
     is to help a job hunter build an impactful portfolio website as quickly, cheaply and easily as possible, minimizing 
@@ -23,6 +21,15 @@ Buttons: Reset (must be double-clicked), Next
 
 Page 2: Optional Portfolio Resources---Upload or paste pre-existing resume(s), templates, examples and/or components to be used as models for content, layout and/or style.
 [[Avoid giving user redundant instructions.]]
+Tips for user:
+0. Don't aim for perfection and completeness on the first iteration.  Get a draft as quickly as possible and then refine it.
+1. Show, don’t just tell: add proof (projects, metrics, links, screenshots, outcomes).
+2. Lead with a 1-line headline that states your target role + specialty + value.
+3. Quantify impact wherever possible (%, $, time saved, volume, accuracy, ratings).
+4. Write for skimmers: short sections, strong headings, bullets, plenty of whitespace.
+5. Tailor to the job ad: mirror keywords (truthfully) and map your evidence to their requirements.
+6. Make contact frictionless: email + LinkedIn visible, plus a clear call-to-action.
+
 * Upload Files such as Resume or LinkedIn profile: PDF, DOC, DOCX; Images; Videos; HTML, Markdown, Text.
     Show two adjacent boxes: the first is the upload button, the second is a long text box for the user to describe how they want the Content box to be used.  The name of each file that is uploaded should be listed under the "Upload File" box.
     Tip to user: Learn how to download a PDF of your LinkedIn profile. [[Make a link from "download a PDF of your LinkedIn profile" to a pop-up containing pretty-fied version of HumanInstructionsForPrintingLinkedInProfile.md]]
@@ -59,9 +66,9 @@ Page 4:
     Progress bar showing each step progression
     Form validation (lenient for optional fields; Name required on page 1)
     All form data collected and logged to console on submission
-    Upon Submit, Display Success message and also generate and display a new AI prompt incorporating all the form answers to generate a webpage. 
-    In addition to the webpage, generate some custom advice for the user, such as "Show, don't just tell."]]
+    Upon Submit, Display Success message and also generate and display a new AI prompt incorporating all the form answers for generating a portfolio webpage. 
+    In addition to the webpage, generate some custom advice for the user."]]
 
-Upon submission of form, write a summary of entire form to MyPersonalPortfolioWebsiteSummary.html
+Upon submission of form, write a summary of entire form to MyPersonalPortfolioWebsiteSummary.html  Send a copy to a generative AI tool like ChatGPT.  Return the output to the user and save it as MyPersonalPortfolioWebsite.html.
 
 Current Output File: MyPersonalPortfolioWebsiteIntakeForm.html — a complete, standalone HTML file ready to embed in website.
