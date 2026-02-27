@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MyPersonalPortfolioWebsiteIntakeForm</title>
   <meta name="description" content="College graduate intake form for generating a portfolio website prompt quickly and efficiently." />
+
+  <!--
+    PersonalPortfolioWebsiteIntakeForm
+    Version: 2.0.0
+    Updated: 2026-02-27
+    Device: mobile
+  -->
+
   <style>
     :root{
       --bg:#0b1220;
@@ -13,15 +21,15 @@
       --text:#eaf0ff;
       --muted:#b8c3e6;
       --border:rgba(255,255,255,.12);
-      --accent:#8DE0FF;
       --primary:#4E70F1;
       --secondary:#FBAB9C;
-      --danger:#ff5c5c;
+      --accent:#8DE0FF;
       --ok:#57d38c;
+      --danger:#ff5c5c;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 14px;
       --radius2: 10px;
-      --gap: 14px;
+      --gap: 12px;
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
@@ -30,40 +38,39 @@
     body{
       margin:0;
       font-family:var(--font);
-      background: radial-gradient(1200px 700px at 10% 0%, rgba(78,112,241,.22), transparent 60%),
-                  radial-gradient(1200px 700px at 90% 0%, rgba(251,171,156,.18), transparent 60%),
-                  radial-gradient(1200px 700px at 50% 100%, rgba(141,224,255,.14), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(900px 520px at 15% 0%, rgba(78,112,241,.22), transparent 60%),
+        radial-gradient(900px 520px at 85% 0%, rgba(251,171,156,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 100%, rgba(141,224,255,.14), transparent 60%),
+        var(--bg);
       color:var(--text);
-      line-height:1.4;
+      line-height:1.45;
     }
 
     a{ color:var(--accent); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
+    /* Mobile-first, max-width 480px for the form content */
     .wrap{
-      max-width: 1100px;
+      max-width: 480px;
       margin: 0 auto;
-      padding: 26px 16px 60px;
+      padding: 16px 12px 40px;
     }
 
     header{
       display:flex;
       flex-direction:column;
-      gap:10px;
-      margin-bottom:18px;
+      gap:8px;
+      margin-bottom:12px;
     }
-
     .title{
-      font-size: clamp(20px, 2.2vw, 30px);
-      font-weight: 750;
-      letter-spacing: .2px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing:.2px;
     }
-
     .subtitle{
       color:var(--muted);
-      font-size: 14px;
-      max-width: 75ch;
+      font-size: 12.5px;
     }
 
     .panel{
@@ -75,38 +82,28 @@
       overflow:hidden;
     }
 
-    .panel-inner{
-      padding: 18px;
-    }
-
     .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding: 14px 18px;
+      padding: 12px 12px 10px;
       border-bottom:1px solid var(--border);
       background: rgba(15,23,38,.7);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
 
     .step-label{
-      font-weight:700;
-      font-size: 13px;
+      font-weight:850;
+      font-size: 12px;
       color:var(--muted);
-      letter-spacing:.4px;
+      letter-spacing:.45px;
       text-transform:uppercase;
     }
 
-    /* Progress */
     .progress{
-      width: 100%;
-      max-width: 520px;
-      min-width: 220px;
       display:flex;
       flex-direction:column;
       gap:8px;
     }
-
     .progress-track{
       width:100%;
       height:10px;
@@ -115,7 +112,6 @@
       border:1px solid var(--border);
       overflow:hidden;
     }
-
     .progress-fill{
       height:100%;
       width:0%;
@@ -123,17 +119,16 @@
       border-radius: 999px;
       transition: width .25s ease;
     }
-
     .progress-steps{
       display:flex;
       justify-content:space-between;
-      gap:10px;
-      font-size:12px;
+      gap:6px;
+      font-size:11px;
       color:var(--muted);
       user-select:none;
     }
     .progress-steps span{
-      display:flex; align-items:center; gap:8px;
+      display:flex; align-items:center; gap:6px;
       white-space:nowrap;
     }
     .dot{
@@ -144,45 +139,15 @@
     .dot.active{ background: var(--accent); border-color: rgba(141,224,255,.55); }
     .dot.done{ background: var(--ok); border-color: rgba(87,211,140,.55); }
 
-    /* Form layout */
     form{ margin:0; }
-
-    .step{
-      display:none;
-      padding: 16px 18px 18px;
-    }
+    .step{ display:none; padding: 12px; }
     .step.active{ display:block; }
 
-    .grid{
-      display:grid;
-      gap: var(--gap);
-    }
+    .field{ display:flex; flex-direction:column; gap:7px; }
+    label{ font-weight:720; font-size: 12.5px; color: rgba(234,240,255,.95); }
+    .hint{ font-size: 12px; color: var(--muted); }
 
-    /* single column by default (mobile first) */
-    .grid-1{ grid-template-columns: 1fr; }
-
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:7px;
-    }
-
-    label{
-      font-weight:650;
-      font-size: 13px;
-      color: rgba(234,240,255,.92);
-    }
-
-    .hint{
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    textarea,
-    select{
+    input[type="text"], input[type="email"], input[type="url"], textarea, select{
       width:100%;
       padding: 11px 12px;
       border-radius: var(--radius2);
@@ -191,33 +156,16 @@
       color: var(--text);
       outline:none;
     }
+    textarea{ min-height: 110px; resize: vertical; }
 
-    textarea{
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    input::placeholder, textarea::placeholder{
-      color: rgba(184,195,230,.55);
-    }
-
+    input::placeholder, textarea::placeholder{ color: rgba(184,195,230,.55); }
     input:focus, textarea:focus, select:focus{
       border-color: rgba(141,224,255,.55);
       box-shadow: 0 0 0 3px rgba(141,224,255,.14);
     }
 
-    .row{
-      display:grid;
-      gap: var(--gap);
-      grid-template-columns: 1fr;
-      align-items:start;
-    }
-
-    @media (min-width: 840px){
-      .row-2{ grid-template-columns: 1fr 1.2fr; }
-      .row-2b{ grid-template-columns: 1fr 1fr; }
-      .row-4{ grid-template-columns: 160px 240px 1.35fr 1.25fr; }
-    }
+    /* "Adjacent boxes" stack vertically on mobile */
+    .stack{ display:grid; gap: var(--gap); grid-template-columns: 1fr; }
 
     .filebox{
       padding: 12px;
@@ -225,14 +173,12 @@
       border:1px dashed rgba(255,255,255,.18);
       background: rgba(11,18,32,.35);
     }
-    .filebox input[type="file"]{
-      width:100%;
-    }
+    .filebox input[type="file"]{ width:100%; }
     .filelist{
       margin:10px 0 0;
       padding-left: 18px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12.5px;
     }
     .filelist li{ margin: 3px 0; }
 
@@ -241,13 +187,10 @@
       gap:10px;
       flex-wrap:wrap;
       align-items:center;
-      justify-content:flex-end;
+      justify-content:space-between;
       margin-top: 14px;
     }
-    .actions.top{
-      margin: 0 0 10px;
-      justify-content:space-between;
-    }
+    .actions.top{ margin: 0 0 10px; }
 
     .btn{
       appearance:none;
@@ -257,7 +200,7 @@
       cursor:pointer;
       color: var(--text);
       background: rgba(255,255,255,.06);
-      font-weight: 700;
+      font-weight: 780;
       letter-spacing:.2px;
       transition: transform .03s ease, background .15s ease, border-color .15s ease;
       user-select:none;
@@ -269,28 +212,19 @@
       background: linear-gradient(90deg, rgba(78,112,241,.9), rgba(141,224,255,.55));
       border-color: rgba(141,224,255,.35);
     }
-    .btn.primary:hover{ background: linear-gradient(90deg, rgba(78,112,241,1), rgba(141,224,255,.65)); }
-
-    .btn.ghost{
-      background: transparent;
-    }
-
-    .btn.danger{
-      background: rgba(255,92,92,.12);
-      border-color: rgba(255,92,92,.35);
-    }
-
+    .btn.ghost{ background: transparent; }
     .btn.small{
       padding: 8px 10px;
       border-radius: 10px;
-      font-weight: 650;
-      font-size: 13px;
+      font-weight: 740;
+      font-size: 12.5px;
     }
 
     .reset-note{
       font-size: 12px;
       color: rgba(251,171,156,.95);
-      font-weight: 650;
+      font-weight: 740;
+      min-height: 16px;
     }
 
     .error{
@@ -299,7 +233,7 @@
       color: rgba(255,230,230,.95);
       padding: 10px 12px;
       border-radius: 12px;
-      margin: 12px 0 0;
+      margin-top: 12px;
       display:none;
     }
     .error.show{ display:block; }
@@ -309,24 +243,11 @@
       border:1px solid rgba(87,211,140,.30);
       padding: 12px;
       border-radius: 12px;
-      margin-top: 16px;
+      margin-top: 14px;
       display:none;
     }
     .ok.show{ display:block; }
 
-    .divider{
-      height:1px;
-      background: var(--border);
-      margin: 14px 0;
-    }
-
-    /* Phone formatting helper */
-    .inline{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
     .pill{
       font-family: var(--mono);
       font-size: 12px;
@@ -335,16 +256,20 @@
       background: rgba(255,255,255,.05);
       border-radius: 999px;
       padding: 6px 10px;
+      display:inline-block;
     }
 
-    /* Theme selector */
+    .divider{
+      height:1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    /* Themes (20) — mobile grid */
     .themes{
       display:grid;
-      gap: 12px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    @media (min-width: 900px){
-      .themes{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      gap: 10px;
+      grid-template-columns: 1fr 1fr;
     }
     .theme-card{
       border:1px solid var(--border);
@@ -361,129 +286,24 @@
       border-color: rgba(141,224,255,.65);
       box-shadow: 0 0 0 3px rgba(141,224,255,.14);
     }
-    .theme-swatch{
-      height: 54px;
-      display:flex;
-    }
-    .sw{
-      flex:1;
-    }
+    .theme-swatch{ height: 44px; display:flex; }
+    .sw{ flex:1; }
     .theme-meta{
-      padding: 10px 10px 12px;
+      padding: 8px 8px 10px;
       display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
+      flex-direction:column;
+      gap:6px;
     }
     .theme-num{
-      font-weight: 800;
+      font-weight: 880;
       font-size: 12px;
-      color: rgba(234,240,255,.92);
     }
     .theme-codes{
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10.8px;
       color: var(--muted);
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      line-height:1.25;
+      line-height: 1.25;
       word-break: break-word;
-    }
-
-    .mini-note{
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* Modal */
-    .modal-backdrop{
-      position: fixed;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding: 18px;
-      background: rgba(0,0,0,.55);
-      z-index: 999;
-    }
-    .modal-backdrop.show{ display:flex; }
-    .modal{
-      width: min(860px, 100%);
-      max-height: min(84vh, 760px);
-      overflow:auto;
-      background: rgba(18,26,44,.95);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-    }
-    .modal-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(15,23,38,.75);
-      position: sticky;
-      top:0;
-    }
-    .modal-title{
-      font-weight:800;
-      letter-spacing:.2px;
-    }
-    .modal-body{
-      padding: 16px;
-      color: rgba(234,240,255,.95);
-    }
-    .modal-body h3{
-      margin: 0 0 8px;
-      font-size: 15px;
-    }
-    .modal-body p, .modal-body li{
-      color: rgba(234,240,255,.88);
-      font-size: 13.5px;
-    }
-    .modal-body code{
-      font-family: var(--mono);
-      font-size: 12px;
-      background: rgba(0,0,0,.25);
-      padding: 2px 6px;
-      border-radius: 8px;
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    /* Output prompt */
-    .output{
-      margin-top: 16px;
-      display:none;
-    }
-    .output.show{ display:block; }
-    .output h3{
-      margin: 0 0 8px;
-      font-size: 15px;
-    }
-    pre{
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: 14px;
-      padding: 12px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(234,240,255,.92);
-      max-height: 360px;
-      overflow:auto;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: var(--gap);
-    }
-    @media (min-width: 980px){
-      .two-col{ grid-template-columns: 1fr 1fr; }
     }
 
     .checkbox{
@@ -497,21 +317,70 @@
     }
     .checkbox input{ margin-top: 2px; transform: scale(1.05); }
 
-    .mutedline{
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 8px;
+    /* Output prompt + advice */
+    .output{ margin-top: 14px; display:none; }
+    .output.show{ display:block; }
+    .output h3{ margin: 0 0 8px; font-size: 14px; }
+    pre{
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 12px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: rgba(234,240,255,.92);
+      max-height: 320px;
+      overflow:auto;
     }
 
+    /* Modal */
+    .modal-backdrop{
+      position: fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 14px;
+      background: rgba(0,0,0,.60);
+      z-index: 999;
+    }
+    .modal-backdrop.show{ display:flex; }
+    .modal{
+      width: min(480px, 100%);
+      max-height: 86vh;
+      overflow:auto;
+      background: rgba(18,26,44,.97);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15,23,38,.78);
+      position: sticky;
+      top:0;
+    }
+    .modal-title{ font-weight: 880; font-size: 13.5px; }
+    .modal-body{ padding: 12px; }
+    .modal-body h3{ margin: 0 0 8px; font-size: 13px; }
+    .modal-body p, .modal-body li{ color: rgba(234,240,255,.90); font-size: 12.8px; }
     .kbd{
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11.5px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       padding: 2px 6px;
       border-radius: 8px;
     }
 
+    /* Accessibility helper */
     .sr-only{
       position:absolute;
       width:1px;height:1px;
@@ -525,10 +394,9 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="title">College Graduate Portfolio Website Intake</div>
+      <div class="title">Portfolio Website Intake (Mobile)</div>
       <div class="subtitle">
-        Fill this out once. On submit, you’ll get (1) a clean AI prompt you can paste into ChatGPT/Claude/etc., and
-        (2) a downloadable HTML summary file (<span class="pill">MyPersonalPortfolioWebsiteSummary.html</span>).
+        On submit, you’ll get a copy/paste AI prompt, custom advice, and a downloadable summary HTML file.
       </div>
     </header>
 
@@ -536,7 +404,7 @@
       <div class="topbar">
         <div>
           <div class="step-label" id="stepLabel">Step 1 of 4</div>
-          <div class="mini-note" id="stepNote">Basic information</div>
+          <div class="hint" id="stepNote">Basic information</div>
         </div>
 
         <div class="progress" aria-label="Progress">
@@ -544,10 +412,10 @@
             <div class="progress-fill" id="progressFill"></div>
           </div>
           <div class="progress-steps" aria-hidden="true">
-            <span><span class="dot" id="dot1"></span>Basics</span>
-            <span><span class="dot" id="dot2"></span>Resources</span>
-            <span><span class="dot" id="dot3"></span>Colors</span>
-            <span><span class="dot" id="dot4"></span>Job</span>
+            <span><span class="dot" id="dot1"></span>1</span>
+            <span><span class="dot" id="dot2"></span>2</span>
+            <span><span class="dot" id="dot3"></span>3</span>
+            <span><span class="dot" id="dot4"></span>4</span>
           </div>
         </div>
       </div>
@@ -555,281 +423,234 @@
       <form id="intakeForm" novalidate>
         <!-- STEP 1 -->
         <div class="step active" data-step="1">
-          <div class="panel-inner" style="padding:0">
-            <div class="grid grid-1">
-              <div class="field">
-                <label for="name">Name <span aria-hidden="true" style="color:var(--secondary)">*</span></label>
-                <input id="name" name="name" type="text" placeholder="First Last" required />
-              </div>
-
-              <div class="field">
-                <label for="email">Email <span aria-hidden="true" style="color:var(--secondary)">*</span></label>
-                <input id="email" name="email" type="email" placeholder="name@example.com" required />
-              </div>
-
-              <div class="field">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone" type="text" inputmode="tel" placeholder="(801) 555-1234" />
-                <div class="inline">
-                  <span class="hint">Auto-formats as you type.</span>
-                  <span class="pill" id="phonePretty" aria-live="polite">—</span>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="major">Major</label>
-                <input id="major" name="major" type="text" placeholder="e.g., Psychology" />
-              </div>
-
-              <div class="field">
-                <label for="specialization">Specialization</label>
-                <input id="specialization" name="specialization" type="text" placeholder="e.g., Cognitive Science, UX Research, Data Analytics" />
-              </div>
-
-              <div class="field">
-                <label for="linkedin">LinkedIn URL <span class="hint">(for employer reference)</span></label>
-                <input id="linkedin" name="linkedin" type="url" placeholder="https://www.linkedin.com/in/username" />
-              </div>
-            </div>
-
-            <div class="actions">
-              <button type="button" class="btn danger" data-reset="1" id="reset1">Reset</button>
-              <button type="button" class="btn primary" id="next1">Next</button>
-              <span class="reset-note" id="resetNote1" aria-live="polite"></span>
-            </div>
-
-            <div class="error" id="error1" role="alert"></div>
+          <div class="field">
+            <label for="name">Name <span aria-hidden="true" style="color:var(--secondary)">*</span></label>
+            <input id="name" name="name" type="text" placeholder="First Last" required />
           </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="email">Email <span aria-hidden="true" style="color:var(--secondary)">*</span></label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required />
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="text" inputmode="tel" placeholder="(801) 555-1234" />
+            <div class="hint" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <span>Auto-formats as you type.</span>
+              <span class="pill" id="phonePretty" aria-live="polite">—</span>
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="major">Major</label>
+            <input id="major" name="major" type="text" placeholder="e.g., Psychology" />
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="specialization">Specialization</label>
+            <input id="specialization" name="specialization" type="text" placeholder="e.g., UX Research, Data Analytics" />
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="linkedin">LinkedIn URL <span class="hint">(for employer reference)</span></label>
+            <input id="linkedin" name="linkedin" type="url" placeholder="https://www.linkedin.com/in/username" />
+          </div>
+
+          <div class="actions">
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <button type="button" class="btn" id="reset1">Reset</button>
+              <div class="reset-note" id="resetNote1" aria-live="polite"></div>
+            </div>
+            <button type="button" class="btn primary" id="next1">Next</button>
+          </div>
+
+          <div class="error" id="error1" role="alert"></div>
         </div>
 
         <!-- STEP 2 -->
         <div class="step" data-step="2">
           <div class="actions top">
+            <button type="button" class="btn ghost" id="back2Top">Back</button>
+            <button type="button" class="btn primary" id="next2Top">Next</button>
+          </div>
+
+          <div class="field">
+            <label>Optional Portfolio Resources</label>
+            <div class="hint">Upload or paste materials you want used as inspiration and/or factual reference.</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Uploads -->
+          <div class="stack">
+            <div class="field">
+              <label for="uploads">Upload files</label>
+              <div class="filebox">
+                <input id="uploads" name="uploads" type="file" multiple
+                       accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.gif,.webp,.mp4,.mov,.html,.htm,.md,.txt" />
+                <ul class="filelist" id="fileList" aria-live="polite"></ul>
+              </div>
+              <div class="hint">Accepted: PDF, DOC/DOCX, images, videos, HTML, Markdown, text.</div>
+            </div>
+
+            <div class="field">
+              <label for="uploadsHow">How should these uploads be used?</label>
+              <textarea id="uploadsHow" name="uploadsHow" placeholder="e.g., Extract facts from my resume, but rewrite bullets. Use template for style inspiration only."></textarea>
+              <div class="hint">
+                Tip: Learn how to <a href="#" id="openLinkedInPdfTip">download a PDF of your LinkedIn profile</a>.
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- URLs -->
+          <div class="field">
+            <label>Website addresses (public URLs only)</label>
+            <div class="hint">Examples: YouTube intro, GitHub portfolio, Behance, personal blog.</div>
+            <div id="urlList" class="stack" style="margin-top:10px;"></div>
+            <div style="margin-top:10px;">
+              <button type="button" class="btn small" id="addUrl">+ Add URL</button>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Text entries -->
+          <div class="field">
+            <label>Text</label>
+            <div class="hint">Paste content (raw, Markdown, or HTML). Choose a section type for each entry.</div>
+            <div id="textEntryList" class="stack" style="margin-top:10px;"></div>
+            <div style="margin-top:10px;">
+              <button type="button" class="btn small" id="addTextEntry">+ Add text entry</button>
+            </div>
+            <div class="hint" id="aiSuggestNote" style="margin-top:8px;" aria-live="polite"></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="checkbox">
+            <input id="copyrightOk" name="copyrightOk" type="checkbox" required />
+            <div>
+              <label for="copyrightOk" style="margin:0;display:block;">
+                I have the copyright or written permission to use these resources, or I only want to use it as inspiration—please generate something different enough to avoid copyright infringement.
+                <span aria-hidden="true" style="color:var(--secondary)">*</span>
+              </label>
+              <div class="hint">Required to proceed.</div>
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:14px;">
             <button type="button" class="btn ghost" id="back2">Back</button>
-            <div class="inline">
-              <button type="button" class="btn danger" data-reset="2" id="reset2">Reset</button>
-              <span class="reset-note" id="resetNote2" aria-live="polite"></span>
-            </div>
+            <button type="button" class="btn primary" id="next2">Next</button>
           </div>
 
-          <div class="grid grid-1">
-            <div class="field">
-              <label>Optional Portfolio Resources</label>
-              <div class="hint">
-                Upload or paste pre-existing resumes, templates, examples, and components to use as inspiration and/or source material.
-              </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- Upload files row -->
-            <div class="row row-2">
-              <div class="field">
-                <label for="uploads">Upload files</label>
-                <div class="filebox">
-                  <input id="uploads" name="uploads" type="file" multiple
-                         accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.gif,.webp,.mp4,.mov,.html,.htm,.md,.txt" />
-                  <ul class="filelist" id="fileList" aria-live="polite"></ul>
-                </div>
-                <div class="hint">
-                  Accepted: PDF, DOC/DOCX, images, videos, HTML, Markdown, text.
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="uploadsHow">How should these uploads be used?</label>
-                <textarea id="uploadsHow" name="uploadsHow" placeholder="e.g., Use my resume for factual details, but rewrite the bullets. Use the template for layout inspiration only."></textarea>
-                <div class="hint">
-                  Tip: Learn how to <a href="#" id="openLinkedInPdfTip">download a PDF of your LinkedIn profile</a>.
-                </div>
-              </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- URLs: dynamic list -->
-            <div class="field">
-              <label>Website addresses (public URLs only)</label>
-              <div class="hint">Add any sites you want referenced (your work, GitHub, Behance, company pages, etc.).</div>
-              <div id="urlList" class="grid" style="margin-top:10px;"></div>
-              <div class="inline" style="margin-top:10px;">
-                <button type="button" class="btn small" id="addUrl">+ Add URL</button>
-                <span class="hint">Each URL has a companion “how to use it” box.</span>
-              </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- Text entries: dynamic list with 4 adjacent boxes -->
-            <div class="field">
-              <label>Text entries</label>
-              <div class="hint">
-                Paste any content (raw text, Markdown, or HTML) that you want included or used as a model.
-              </div>
-              <div id="textEntryList" class="grid" style="margin-top:10px;"></div>
-              <div class="inline" style="margin-top:10px;">
-                <button type="button" class="btn small" id="addTextEntry">+ Add text entry</button>
-                <span class="hint">Section Type options include AI-recommended starred choices.</span>
-              </div>
-              <div class="mutedline" id="aiSuggestNote" aria-live="polite"></div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="checkbox">
-              <input id="copyrightOk" name="copyrightOk" type="checkbox" required />
-              <div>
-                <label for="copyrightOk" style="margin:0;display:block;">
-                  I have the copyright or written permission to use these resources, or I only want to use it as inspiration—please generate something different enough to avoid copyright infringement.
-                  <span aria-hidden="true" style="color:var(--secondary)">*</span>
-                </label>
-                <div class="hint">Required to proceed.</div>
-              </div>
-            </div>
-
-            <div class="actions">
-              <button type="button" class="btn ghost" id="back2b">Back</button>
-              <button type="button" class="btn danger" data-reset="2" id="reset2b">Reset</button>
-              <button type="button" class="btn primary" id="next2">Next</button>
-              <span class="reset-note" id="resetNote2b" aria-live="polite"></span>
-            </div>
-
-            <div class="error" id="error2" role="alert"></div>
-          </div>
+          <div class="error" id="error2" role="alert"></div>
         </div>
 
         <!-- STEP 3 -->
         <div class="step" data-step="3">
           <div class="actions top">
+            <button type="button" class="btn ghost" id="back3Top">Back</button>
+            <button type="button" class="btn primary" id="next3Top">Next</button>
+          </div>
+
+          <div class="field">
+            <label>Color scheme</label>
+            <div class="hint">Choose a theme (1–20) or enter hex codes below.</div>
+          </div>
+
+          <div class="themes" id="themes" style="margin-top:10px;"></div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="themeNumber">Theme number (optional)</label>
+            <input id="themeNumber" name="themeNumber" type="text" inputmode="numeric" placeholder="e.g., 1" />
+            <div class="hint">Selecting a theme fills in the hex fields (editable).</div>
+          </div>
+
+          <div class="field" style="margin-top:10px;">
+            <label>Selected theme</label>
+            <span class="pill" id="selectedThemeLabel">None</span>
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="primaryHex">1. Primary</label>
+            <input id="primaryHex" name="primaryHex" type="text" placeholder="#4E70F1" />
+          </div>
+          <div class="field" style="margin-top:10px;">
+            <label for="secondaryHex">2. Secondary</label>
+            <input id="secondaryHex" name="secondaryHex" type="text" placeholder="#FBAB9C" />
+          </div>
+          <div class="field" style="margin-top:10px;">
+            <label for="accentHex">3. Accent</label>
+            <input id="accentHex" name="accentHex" type="text" placeholder="#8DE0FF" />
+          </div>
+          <div class="field" style="margin-top:10px;">
+            <label for="darkHex">4. Dark</label>
+            <input id="darkHex" name="darkHex" type="text" placeholder="#0b1220" />
+          </div>
+          <div class="field" style="margin-top:10px;">
+            <label for="lightHex">5. Light</label>
+            <input id="lightHex" name="lightHex" type="text" placeholder="#eaf0ff" />
+          </div>
+
+          <div class="actions" style="margin-top:14px;">
             <button type="button" class="btn ghost" id="back3">Back</button>
-            <div class="inline">
-              <button type="button" class="btn danger" data-reset="3" id="reset3">Reset</button>
-              <span class="reset-note" id="resetNote3" aria-live="polite"></span>
-            </div>
+            <button type="button" class="btn primary" id="next3">Next</button>
           </div>
 
-          <div class="grid grid-1">
-            <div class="field">
-              <label>Color scheme</label>
-              <div class="hint">Pick a theme (1–20), or enter hex codes below.</div>
-            </div>
-
-            <!-- Embedded "color-themes.html" equivalent (inline render) -->
-            <div class="themes" id="themes"></div>
-
-            <div class="row row-2b" style="margin-top:6px;">
-              <div class="field">
-                <label for="themeNumber">Theme number (optional)</label>
-                <input id="themeNumber" name="themeNumber" type="text" inputmode="numeric" placeholder="e.g., 1" />
-                <div class="hint">If set, it populates the hex fields automatically (you can still edit them).</div>
-              </div>
-              <div class="field">
-                <label>Selected theme</label>
-                <div class="pill" id="selectedThemeLabel">None</div>
-              </div>
-            </div>
-
-            <div class="row row-2b">
-              <div class="field">
-                <label for="primaryHex">1. Primary</label>
-                <input id="primaryHex" name="primaryHex" type="text" placeholder="#4E70F1" />
-              </div>
-              <div class="field">
-                <label for="secondaryHex">2. Secondary</label>
-                <input id="secondaryHex" name="secondaryHex" type="text" placeholder="#FBAB9C" />
-              </div>
-              <div class="field">
-                <label for="accentHex">3. Accent</label>
-                <input id="accentHex" name="accentHex" type="text" placeholder="#8DE0FF" />
-              </div>
-              <div class="field">
-                <label for="darkHex">4. Dark</label>
-                <input id="darkHex" name="darkHex" type="text" placeholder="#0b1220" />
-              </div>
-              <div class="field">
-                <label for="lightHex">5. Light</label>
-                <input id="lightHex" name="lightHex" type="text" placeholder="#eaf0ff" />
-              </div>
-            </div>
-
-            <div class="actions">
-              <button type="button" class="btn ghost" id="back3b">Back</button>
-              <button type="button" class="btn danger" data-reset="3" id="reset3b">Reset</button>
-              <button type="button" class="btn primary" id="next3">Next</button>
-              <span class="reset-note" id="resetNote3b" aria-live="polite"></span>
-            </div>
-
-            <div class="error" id="error3" role="alert"></div>
-          </div>
+          <div class="error" id="error3" role="alert"></div>
         </div>
 
         <!-- STEP 4 -->
         <div class="step" data-step="4">
           <div class="actions top">
+            <button type="button" class="btn ghost" id="back4Top">Back</button>
+            <button type="submit" class="btn primary" id="submitTop">Submit</button>
+          </div>
+
+          <div class="field">
+            <label for="desiredJob">Desired Job Position</label>
+            <input id="desiredJob" name="desiredJob" type="text" placeholder="e.g., Data Analyst, UX Researcher" />
+          </div>
+
+          <div class="field" style="margin-top:12px;">
+            <label for="jobAd">Job Position Ad</label>
+            <textarea id="jobAd" name="jobAd" placeholder="Paste the job description (optional but highly useful)."></textarea>
+          </div>
+
+          <div class="actions" style="margin-top:14px;">
             <button type="button" class="btn ghost" id="back4">Back</button>
-            <div class="inline">
-              <button type="button" class="btn danger" data-reset="4" id="reset4">Reset</button>
-              <span class="reset-note" id="resetNote4" aria-live="polite"></span>
+            <button type="submit" class="btn primary" id="submitBtn">Submit</button>
+          </div>
+
+          <div class="error" id="error4" role="alert"></div>
+
+          <div class="ok" id="successBox" role="status">
+            <div style="font-weight:900;margin-bottom:6px;">Success ✅</div>
+            <div class="hint" style="color: rgba(234,240,255,.88);">
+              Your form data was logged to the console. Your AI prompt, advice, and summary file are ready below.
             </div>
           </div>
 
-          <div class="grid grid-1">
-            <div class="field">
-              <label for="desiredJob">Desired Job Position</label>
-              <input id="desiredJob" name="desiredJob" type="text" placeholder="e.g., Data Analyst, UX Researcher, Junior Software Engineer" />
+          <div class="output" id="outputBox">
+            <h3>Generated AI Prompt (copy/paste)</h3>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin: 0 0 10px;">
+              <button type="button" class="btn small" id="copyPrompt">Copy prompt</button>
+              <button type="button" class="btn small" id="downloadSummary">Download Summary HTML</button>
             </div>
+            <pre id="promptPre"></pre>
 
-            <div class="field">
-              <label for="jobAd">Job Position Ad</label>
-              <textarea id="jobAd" name="jobAd" placeholder="Paste the job description (optional but highly useful)."></textarea>
-            </div>
+            <div class="divider"></div>
 
-            <div class="actions">
-              <button type="button" class="btn danger" data-reset="4" id="reset4b">Reset</button>
-              <button type="button" class="btn ghost" id="back4b">Back</button>
-              <button type="submit" class="btn primary" id="submitBtn">Submit</button>
-              <span class="reset-note" id="resetNote4b" aria-live="polite"></span>
-            </div>
+            <h3>Custom advice</h3>
+            <pre id="advicePre"></pre>
 
-            <div class="error" id="error4" role="alert"></div>
+            <div class="divider"></div>
 
-            <div class="ok" id="successBox" role="status">
-              <div style="font-weight:800;margin-bottom:6px;">Success ✅</div>
-              <div class="hint" style="color: rgba(234,240,255,.88);">
-                Your form data was logged to the console, and your AI prompt + summary file are ready below.
-              </div>
-            </div>
-
-            <div class="output" id="outputBox">
-              <div class="two-col">
-                <div>
-                  <h3>Generated AI Prompt (copy/paste)</h3>
-                  <div class="inline" style="margin: 0 0 10px;">
-                    <button type="button" class="btn small" id="copyPrompt">Copy prompt</button>
-                    <span class="hint">Tip: Use this as your “system”/top instruction block when generating the site.</span>
-                  </div>
-                  <pre id="promptPre"></pre>
-                </div>
-
-                <div>
-                  <h3>Summary HTML (download)</h3>
-                  <div class="inline" style="margin: 0 0 10px;">
-                    <button type="button" class="btn small" id="downloadSummary">Download MyPersonalPortfolioWebsiteSummary.html</button>
-                    <span class="hint">This is a snapshot of your inputs.</span>
-                  </div>
-                  <pre id="summaryPre"></pre>
-                </div>
-              </div>
-
-              <div class="divider"></div>
-
-              <div class="field">
-                <label>Next step</label>
-                <div class="hint">
-                  Paste the prompt into your AI tool. If you uploaded files, also attach them in the AI chat and say how to use them.
-                </div>
-              </div>
-            </div>
+            <h3>Summary HTML (preview)</h3>
+            <pre id="summaryPre"></pre>
           </div>
         </div>
       </form>
@@ -844,30 +665,29 @@
         <button type="button" class="btn small" id="closeModal" aria-label="Close">Close</button>
       </div>
       <div class="modal-body">
-        <!-- Pretty-fied version of HumanInstructionsForPrintingLinkedInProfile.md (embedded here) -->
         <h3>Desktop (recommended)</h3>
         <ol>
-          <li>Open your profile on LinkedIn (click your photo → <strong>View Profile</strong>).</li>
-          <li>Look for the <strong>More</strong> button near your profile header.</li>
-          <li>Select <strong>Save to PDF</strong> (or <strong>Print</strong>, then “Save as PDF” in the print dialog, depending on your LinkedIn UI).</li>
-          <li>Save the PDF, then upload it on the previous page.</li>
+          <li>Open your profile on LinkedIn (tap/click your photo → <strong>View Profile</strong>).</li>
+          <li>Find the <strong>More</strong> button near your profile header.</li>
+          <li>Select <strong>Save to PDF</strong> (or <strong>Print</strong>, then “Save as PDF” in the print dialog, depending on your UI).</li>
+          <li>Save the PDF, then upload it in Step 2.</li>
         </ol>
 
         <h3>If you don’t see “Save to PDF”</h3>
         <ul>
-          <li>Try switching to a desktop browser (Chrome/Safari/Edge) instead of mobile.</li>
-          <li>Try a different browser, or sign out/back in.</li>
-          <li>As a fallback: use your browser’s print dialog (<span class="kbd">Ctrl/Cmd</span> + <span class="kbd">P</span>) and choose <strong>Save as PDF</strong>.</li>
+          <li>Switch to a desktop browser if possible.</li>
+          <li>Try another browser, or sign out/back in.</li>
+          <li>Fallback: use print-to-PDF (<span class="kbd">Ctrl/Cmd</span> + <span class="kbd">P</span>) → <strong>Save as PDF</strong>.</li>
         </ul>
 
         <h3>What to upload</h3>
         <ul>
           <li>Upload the PDF you saved.</li>
-          <li>In the “How should these uploads be used?” box, tell the AI to extract facts (roles, dates, skills) and rewrite wording.</li>
+          <li>Tell the AI to extract facts and rewrite wording to be original.</li>
         </ul>
 
         <p class="hint" style="margin-top:12px;">
-          Note: LinkedIn’s menus can change. If you can’t find the option, the print-to-PDF method usually works.
+          Note: LinkedIn’s menus can change; print-to-PDF usually works.
         </p>
       </div>
     </div>
@@ -883,7 +703,6 @@
       { n: 3, note: "Color scheme" },
       { n: 4, note: "Desired job & submission" }
     ];
-
     let currentStep = 1;
 
     const stepLabel = document.getElementById("stepLabel");
@@ -914,19 +733,18 @@
         else if(i === n) dots[i].classList.add("active");
       }
 
-      // update AI suggestions for section types when entering step 2
       if(n === 2) updateSuggestedSectionTypes();
     }
 
     /**********************
-     * Double-click reset (custom)
+     * Double-click reset (Step 1 only, per spec)
      **********************/
     const resetState = new Map(); // step -> {armedUntil:number}
     function armReset(step, noteEl){
       const now = Date.now();
-      const armedUntil = now + 1500; // 1.5s window
+      const armedUntil = now + 1500;
       resetState.set(step, { armedUntil });
-      noteEl.textContent = "Click Reset again to confirm.";
+      noteEl.textContent = "Tap Reset again to confirm.";
       window.setTimeout(() => {
         const st = resetState.get(step);
         if(st && st.armedUntil === armedUntil){
@@ -936,67 +754,29 @@
       }, 1550);
     }
 
-    function doReset(step){
-      // reset only fields within that step
-      const stepEl = document.querySelector(`.step[data-step="${step}"]`);
+    function doResetStep1(){
+      const stepEl = document.querySelector('.step[data-step="1"]');
       if(!stepEl) return;
-
-      // reset inputs/selects/textareas
-      stepEl.querySelectorAll("input, textarea, select").forEach(el => {
-        if(el.type === "checkbox" || el.type === "radio") el.checked = false;
-        else if(el.type === "file") el.value = "";
-        else el.value = "";
-      });
-
-      // special step-specific cleanup
-      if(step === 2){
-        uploadedFiles = [];
-        renderFileList();
-        urlRows = [];
-        renderUrlRows();
-        textEntries = [];
-        renderTextEntries();
-        document.getElementById("aiSuggestNote").textContent = "";
-      }
-      if(step === 3){
-        selectedThemeIndex = null;
-        renderThemes();
-        document.getElementById("selectedThemeLabel").textContent = "None";
-      }
-      if(step === 4){
-        // hide outputs
-        document.getElementById("successBox").classList.remove("show");
-        document.getElementById("outputBox").classList.remove("show");
-      }
+      stepEl.querySelectorAll("input").forEach(el => el.value = "");
+      document.getElementById("phonePretty").textContent = "—";
+      clearError(1);
     }
 
-    function attachReset(btnId, noteId, step){
-      const btn = document.getElementById(btnId);
-      const noteEl = document.getElementById(noteId);
-      btn.addEventListener("click", () => {
-        const st = resetState.get(step);
-        const now = Date.now();
-        if(st && now <= st.armedUntil){
-          resetState.delete(step);
-          noteEl.textContent = "";
-          doReset(step);
-        }else{
-          armReset(step, noteEl);
-        }
-      });
-    }
-
-    // Attach all reset buttons
-    attachReset("reset1", "resetNote1", 1);
-    attachReset("reset2", "resetNote2", 2);
-    attachReset("reset2b","resetNote2b",2);
-    attachReset("reset3", "resetNote3", 3);
-    attachReset("reset3b","resetNote3b",3);
-    attachReset("reset4", "resetNote4", 4);
-    attachReset("reset4b","resetNote4b",4);
+    document.getElementById("reset1").addEventListener("click", () => {
+      const noteEl = document.getElementById("resetNote1");
+      const st = resetState.get(1);
+      const now = Date.now();
+      if(st && now <= st.armedUntil){
+        resetState.delete(1);
+        noteEl.textContent = "";
+        doResetStep1();
+      }else{
+        armReset(1, noteEl);
+      }
+    });
 
     /**********************
-     * Navigation buttons
+     * Navigation
      **********************/
     document.getElementById("next1").addEventListener("click", () => {
       const err = validateStep1();
@@ -1005,8 +785,10 @@
       showStep(2);
     });
 
+    document.getElementById("back2Top").addEventListener("click", () => showStep(1));
     document.getElementById("back2").addEventListener("click", () => showStep(1));
-    document.getElementById("back2b").addEventListener("click", () => showStep(1));
+    document.getElementById("next2Top").addEventListener("click", () => document.getElementById("next2").click());
+
     document.getElementById("next2").addEventListener("click", () => {
       const err = validateStep2();
       if(err) return showError(2, err);
@@ -1014,8 +796,10 @@
       showStep(3);
     });
 
+    document.getElementById("back3Top").addEventListener("click", () => showStep(2));
     document.getElementById("back3").addEventListener("click", () => showStep(2));
-    document.getElementById("back3b").addEventListener("click", () => showStep(2));
+    document.getElementById("next3Top").addEventListener("click", () => document.getElementById("next3").click());
+
     document.getElementById("next3").addEventListener("click", () => {
       const err = validateStep3();
       if(err) return showError(3, err);
@@ -1023,8 +807,8 @@
       showStep(4);
     });
 
+    document.getElementById("back4Top").addEventListener("click", () => showStep(3));
     document.getElementById("back4").addEventListener("click", () => showStep(3));
-    document.getElementById("back4b").addEventListener("click", () => showStep(3));
 
     /**********************
      * Validation
@@ -1060,11 +844,9 @@
     }
 
     function validateStep3(){
-      // optional, but if provided must look like hex
       const hexes = ["primaryHex","secondaryHex","accentHex","darkHex","lightHex"]
         .map(id => document.getElementById(id).value.trim())
         .filter(Boolean);
-
       const bad = hexes.find(h => !/^#?[0-9a-fA-F]{6}$/.test(h));
       if(bad) return `Color "${bad}" should be a 6-digit hex value (e.g., #4E70F1).`;
       return null;
@@ -1075,7 +857,6 @@
      **********************/
     const phoneInput = document.getElementById("phone");
     const phonePretty = document.getElementById("phonePretty");
-
     function formatUSPhone(raw){
       const digits = (raw || "").replace(/\D/g, "").slice(0, 10);
       if(!digits) return "";
@@ -1086,7 +867,6 @@
       if(digits.length <= 6) return `(${a}) ${b}`;
       return `(${a}) ${b}-${c}`;
     }
-
     phoneInput.addEventListener("input", () => {
       const pretty = formatUSPhone(phoneInput.value);
       phoneInput.value = pretty;
@@ -1094,7 +874,7 @@
     });
 
     /**********************
-     * Step 2: Uploads (list file names)
+     * Step 2: Uploads list
      **********************/
     let uploadedFiles = [];
     const uploadsInput = document.getElementById("uploads");
@@ -1114,17 +894,17 @@
       if(!uploadedFiles.length) return;
       uploadedFiles.forEach(f => {
         const li = document.createElement("li");
-        li.textContent = `${f.name}`;
+        li.textContent = f.name;
         fileList.appendChild(li);
       });
     }
 
     /**********************
-     * Step 2: Dynamic URL rows
+     * Step 2: Dynamic URL rows (2 boxes)
      **********************/
     let urlRows = [];
-
     const urlList = document.getElementById("urlList");
+
     document.getElementById("addUrl").addEventListener("click", () => {
       urlRows.push({ url:"", how:"" });
       renderUrlRows();
@@ -1141,62 +921,61 @@
       }
 
       urlRows.forEach((row, idx) => {
-        const container = document.createElement("div");
-        container.className = "row row-2";
-        container.style.marginTop = "10px";
+        const box = document.createElement("div");
+        box.className = "stack";
+        box.style.border = "1px solid rgba(255,255,255,.10)";
+        box.style.borderRadius = "14px";
+        box.style.padding = "10px";
+        box.style.background = "rgba(0,0,0,.14)";
 
-        const left = document.createElement("div");
-        left.className = "field";
+        const f1 = document.createElement("div");
+        f1.className = "field";
         const l1 = document.createElement("label");
         l1.textContent = `URL #${idx+1}`;
-        const in1 = document.createElement("input");
-        in1.type = "url";
-        in1.placeholder = "https://example.com";
-        in1.value = row.url;
-        in1.addEventListener("input", () => urlRows[idx].url = in1.value);
-        left.appendChild(l1); left.appendChild(in1);
+        const i1 = document.createElement("input");
+        i1.type = "url";
+        i1.placeholder = "https://example.com";
+        i1.value = row.url;
+        i1.addEventListener("input", () => urlRows[idx].url = i1.value);
+        f1.append(l1, i1);
 
-        const right = document.createElement("div");
-        right.className = "field";
+        const f2 = document.createElement("div");
+        f2.className = "field";
         const l2 = document.createElement("label");
         l2.textContent = "How should this URL be used?";
-        const t = document.createElement("textarea");
-        t.placeholder = "e.g., Use as a style reference. Or: extract project details and rewrite.";
-        t.value = row.how;
-        t.addEventListener("input", () => urlRows[idx].how = t.value);
-        right.appendChild(l2); right.appendChild(t);
+        const t2 = document.createElement("textarea");
+        t2.placeholder = "e.g., Use as inspiration; extract project details; reference as proof of work.";
+        t2.value = row.how;
+        t2.addEventListener("input", () => urlRows[idx].how = t2.value);
+        f2.append(l2, t2);
 
         const remove = document.createElement("button");
         remove.type = "button";
-        remove.className = "btn small danger";
-        remove.style.justifySelf = "end";
-        remove.textContent = "Remove";
+        remove.className = "btn small";
+        remove.style.borderColor = "rgba(255,92,92,.35)";
+        remove.style.background = "rgba(255,92,92,.10)";
+        remove.textContent = "Remove URL";
         remove.addEventListener("click", () => {
           urlRows.splice(idx, 1);
           renderUrlRows();
         });
 
-        container.appendChild(left);
-        container.appendChild(right);
-        urlList.appendChild(container);
-        urlList.appendChild(remove);
+        box.append(f1, f2, remove);
+        urlList.appendChild(box);
       });
     }
-    renderUrlRows();
 
     /**********************
-     * Step 2: Text entries (4 adjacent boxes)
-     * Section types based on "Portfolio Section Types.txt" (embedded representative list here).
-     * Star the most recommended ones.
+     * Step 2: Text entries (4 boxes)
      **********************/
     const BASE_SECTION_TYPES = [
-      { label: "About / Bio ★", value:"About / Bio", starred:true },
-      { label: "Projects / Case Studies ★", value:"Projects / Case Studies", starred:true },
-      { label: "Experience ★", value:"Experience", starred:true },
-      { label: "Skills ★", value:"Skills", starred:true },
-      { label: "Education ★", value:"Education", starred:true },
-      { label: "Resume (Full) ★", value:"Resume (Full)", starred:true },
-      { label: "Contact ★", value:"Contact", starred:true },
+      { label: "About / Bio ★", value:"About / Bio" },
+      { label: "Projects / Case Studies ★", value:"Projects / Case Studies" },
+      { label: "Experience ★", value:"Experience" },
+      { label: "Skills ★", value:"Skills" },
+      { label: "Education ★", value:"Education" },
+      { label: "Resume (Full) ★", value:"Resume (Full)" },
+      { label: "Contact ★", value:"Contact" },
       { label: "Achievements / Awards", value:"Achievements / Awards" },
       { label: "Certifications", value:"Certifications" },
       { label: "Leadership / Service", value:"Leadership / Service" },
@@ -1211,7 +990,7 @@
       { label: "None", value:"None" }
     ];
 
-    let suggestedExtraTypes = []; // created heuristically from previous fields
+    let suggestedExtraTypes = [];
     let textEntries = [];
     const textEntryList = document.getElementById("textEntryList");
 
@@ -1221,7 +1000,6 @@
     });
 
     function buildSectionTypeOptions(){
-      // combine base + suggested extras inserted before Other/None
       const options = [...BASE_SECTION_TYPES];
       const insertAt = Math.max(0, options.findIndex(o => o.value === "Other"));
       const extras = suggestedExtraTypes.map(s => ({ label: s + " (suggested)", value: s }));
@@ -1244,98 +1022,86 @@
       const options = buildSectionTypeOptions();
 
       textEntries.forEach((entry, idx) => {
-        const row = document.createElement("div");
-        row.className = "row row-4";
-        row.style.marginTop = "10px";
+        const box = document.createElement("div");
+        box.className = "stack";
+        box.style.border = "1px solid rgba(255,255,255,.10)";
+        box.style.borderRadius = "14px";
+        box.style.padding = "10px";
+        box.style.background = "rgba(0,0,0,.14)";
 
-        // file type
-        const ft = document.createElement("div");
-        ft.className = "field";
-        const ftLabel = document.createElement("label");
-        ftLabel.textContent = "File type";
-        const ftSel = document.createElement("select");
+        const f1 = document.createElement("div");
+        f1.className = "field";
+        const l1 = document.createElement("label");
+        l1.textContent = "File type";
+        const s1 = document.createElement("select");
         ["HTML","Markdown","raw"].forEach(v => {
           const o = document.createElement("option");
           o.value = v.toLowerCase();
           o.textContent = v;
           if(entry.fileType === v.toLowerCase()) o.selected = true;
-          ftSel.appendChild(o);
+          s1.appendChild(o);
         });
-        ftSel.addEventListener("change", () => textEntries[idx].fileType = ftSel.value);
-        ft.appendChild(ftLabel);
-        ft.appendChild(ftSel);
+        s1.addEventListener("change", () => textEntries[idx].fileType = s1.value);
+        f1.append(l1, s1);
 
-        // section type
-        const st = document.createElement("div");
-        st.className = "field";
-        const stLabel = document.createElement("label");
-        stLabel.textContent = "Section type";
-        const stSel = document.createElement("select");
+        const f2 = document.createElement("div");
+        f2.className = "field";
+        const l2 = document.createElement("label");
+        l2.textContent = "Section type";
+        const s2 = document.createElement("select");
         options.forEach(opt => {
           const o = document.createElement("option");
           o.value = opt.value;
           o.textContent = opt.label;
           if(entry.sectionType === opt.value) o.selected = true;
-          stSel.appendChild(o);
+          s2.appendChild(o);
         });
-        stSel.addEventListener("change", () => textEntries[idx].sectionType = stSel.value);
-        st.appendChild(stLabel);
-        st.appendChild(stSel);
+        s2.addEventListener("change", () => textEntries[idx].sectionType = s2.value);
+        f2.append(l2, s2);
 
-        // content
-        const content = document.createElement("div");
-        content.className = "field";
-        const cLabel = document.createElement("label");
-        cLabel.textContent = "Content";
-        const cTa = document.createElement("textarea");
-        cTa.placeholder = "Paste content here…";
-        cTa.value = entry.content;
-        cTa.addEventListener("input", () => textEntries[idx].content = cTa.value);
-        content.appendChild(cLabel);
-        content.appendChild(cTa);
+        const f3 = document.createElement("div");
+        f3.className = "field";
+        const l3 = document.createElement("label");
+        l3.textContent = "Content";
+        const t3 = document.createElement("textarea");
+        t3.placeholder = "Paste content here…";
+        t3.value = entry.content;
+        t3.addEventListener("input", () => textEntries[idx].content = t3.value);
+        f3.append(l3, t3);
 
-        // how to use
-        const how = document.createElement("div");
-        how.className = "field";
-        const hLabel = document.createElement("label");
-        hLabel.textContent = "How should this be used?";
-        const hTa = document.createElement("textarea");
-        hTa.placeholder = "e.g., Use as factual source only. Or: imitate tone, but rewrite completely.";
-        hTa.value = entry.how;
-        hTa.addEventListener("input", () => textEntries[idx].how = hTa.value);
-        how.appendChild(hLabel);
-        how.appendChild(hTa);
+        const f4 = document.createElement("div");
+        f4.className = "field";
+        const l4 = document.createElement("label");
+        l4.textContent = "How should this be used?";
+        const t4 = document.createElement("textarea");
+        t4.placeholder = "e.g., facts only; style inspiration; rewrite completely.";
+        t4.value = entry.how;
+        t4.addEventListener("input", () => textEntries[idx].how = t4.value);
+        f4.append(l4, t4);
 
-        // remove button
         const remove = document.createElement("button");
         remove.type = "button";
-        remove.className = "btn small danger";
+        remove.className = "btn small";
+        remove.style.borderColor = "rgba(255,92,92,.35)";
+        remove.style.background = "rgba(255,92,92,.10)";
         remove.textContent = "Remove entry";
         remove.addEventListener("click", () => {
           textEntries.splice(idx, 1);
           renderTextEntries();
         });
 
-        row.appendChild(ft);
-        row.appendChild(st);
-        row.appendChild(content);
-        row.appendChild(how);
-
-        textEntryList.appendChild(row);
-        textEntryList.appendChild(remove);
+        box.append(f1, f2, f3, f4, remove);
+        textEntryList.appendChild(box);
       });
     }
-    renderTextEntries();
 
     function updateSuggestedSectionTypes(){
-      // Heuristic "AI" suggestion based on major/specialization/job:
       const major = (document.getElementById("major").value || "").toLowerCase();
       const spec  = (document.getElementById("specialization").value || "").toLowerCase();
       const desired = (document.getElementById("desiredJob").value || "").toLowerCase();
-
       const bag = `${major} ${spec} ${desired}`.trim();
-      const extras = new Set();
 
+      const extras = new Set();
       if(/data|analytics|analyst|science|ml|machine learning|stat|statistics/.test(bag)) extras.add("Data / Analytics Highlights");
       if(/ux|user experience|product|research|design|hci/.test(bag)) extras.add("UX Case Studies");
       if(/software|developer|engineer|program|full stack|frontend|backend/.test(bag)) extras.add("Technical Projects");
@@ -1346,18 +1112,14 @@
 
       suggestedExtraTypes = Array.from(extras);
       const note = document.getElementById("aiSuggestNote");
-      if(suggestedExtraTypes.length){
-        note.textContent = `Suggested section types (based on what you’ve entered): ${suggestedExtraTypes.join(", ")}.`;
-      }else{
-        note.textContent = "";
-      }
-
-      // re-render text entries so dropdown includes suggestions
+      note.textContent = suggestedExtraTypes.length
+        ? `Suggested section types (based on what you entered): ${suggestedExtraTypes.join(", ")}.`
+        : "";
       renderTextEntries();
     }
 
     /**********************
-     * Step 3: Theme selector (20 options)
+     * Step 3: Theme selector (20)
      **********************/
     const THEME_LIST = [
       { n:1,  primary:"#4E70F1", secondary:"#FBAB9C", accent:"#8DE0FF", dark:"#0b1220", light:"#eaf0ff" },
@@ -1382,7 +1144,7 @@
       { n:20, primary:"#1F2937", secondary:"#F97316", accent:"#34D399", dark:"#06080D", light:"#F5F7FA" }
     ];
 
-    let selectedThemeIndex = null; // 0-based index in THEME_LIST
+    let selectedThemeIndex = null;
     const themesEl = document.getElementById("themes");
     const themeNumberInput = document.getElementById("themeNumber");
     const selectedThemeLabel = document.getElementById("selectedThemeLabel");
@@ -1408,31 +1170,22 @@
         const meta = document.createElement("div");
         meta.className = "theme-meta";
 
-        const left = document.createElement("div");
         const num = document.createElement("div");
         num.className = "theme-num";
         num.textContent = `Theme ${t.n}`;
+
         const codes = document.createElement("div");
         codes.className = "theme-codes";
         codes.innerHTML = `
           <div>P ${t.primary}</div>
           <div>S ${t.secondary}</div>
           <div>A ${t.accent}</div>
-        `;
-        left.appendChild(num);
-        left.appendChild(codes);
-
-        const right = document.createElement("div");
-        right.className = "theme-codes";
-        right.innerHTML = `
           <div>D ${t.dark}</div>
           <div>L ${t.light}</div>
         `;
 
-        meta.append(left, right);
-
-        card.appendChild(swatch);
-        card.appendChild(meta);
+        meta.append(num, codes);
+        card.append(swatch, meta);
 
         const choose = () => selectTheme(idx, true);
         card.addEventListener("click", choose);
@@ -1482,13 +1235,10 @@
       if(idx >= 0) selectTheme(idx, false);
     });
 
-    // When user edits hex fields manually, keep them normalized but don't force selection
     ["primaryHex","secondaryHex","accentHex","darkHex","lightHex"].forEach(id => {
       const el = document.getElementById(id);
       el.addEventListener("blur", () => {
-        if(el.value.trim()){
-          el.value = normalizeHex(el.value);
-        }
+        if(el.value.trim()) el.value = normalizeHex(el.value);
       });
     });
 
@@ -1509,31 +1259,27 @@
       modalBackdrop.classList.remove("show");
     }
 
-    openTip.addEventListener("click", (e) => {
-      e.preventDefault();
-      openModal();
-    });
+    openTip.addEventListener("click", (e) => { e.preventDefault(); openModal(); });
     closeModal.addEventListener("click", hideModal);
-    modalBackdrop.addEventListener("click", (e) => {
-      if(e.target === modalBackdrop) hideModal();
-    });
+    modalBackdrop.addEventListener("click", (e) => { if(e.target === modalBackdrop) hideModal(); });
     window.addEventListener("keydown", (e) => {
       if(e.key === "Escape" && modalBackdrop.classList.contains("show")) hideModal();
     });
 
     /**********************
-     * Submission: collect data, console.log, success message, AI prompt, summary HTML download
+     * Submission: collect, console.log, prompt+advice+summary, download
      **********************/
     const form = document.getElementById("intakeForm");
     const successBox = document.getElementById("successBox");
     const outputBox = document.getElementById("outputBox");
     const promptPre = document.getElementById("promptPre");
+    const advicePre = document.getElementById("advicePre");
     const summaryPre = document.getElementById("summaryPre");
 
     function safeTrim(v){ return String(v ?? "").trim(); }
 
     function collectData(){
-      const data = {
+      return {
         basic: {
           name: safeTrim(document.getElementById("name").value),
           email: safeTrim(document.getElementById("email").value),
@@ -1545,17 +1291,13 @@
         resources: {
           uploads: uploadedFiles.slice(),
           uploadsHow: safeTrim(document.getElementById("uploadsHow").value),
-          urls: urlRows
-            .map(r => ({ url: safeTrim(r.url), how: safeTrim(r.how) }))
-            .filter(r => r.url || r.how),
-          textEntries: textEntries
-            .map(t => ({
-              fileType: safeTrim(t.fileType),
-              sectionType: safeTrim(t.sectionType),
-              content: safeTrim(t.content),
-              how: safeTrim(t.how)
-            }))
-            .filter(t => t.content || t.how),
+          urls: urlRows.map(r => ({ url: safeTrim(r.url), how: safeTrim(r.how) })).filter(r => r.url || r.how),
+          textEntries: textEntries.map(t => ({
+            fileType: safeTrim(t.fileType),
+            sectionType: safeTrim(t.sectionType),
+            content: safeTrim(t.content),
+            how: safeTrim(t.how)
+          })).filter(t => t.content || t.how),
           copyrightOk: !!document.getElementById("copyrightOk").checked
         },
         colors: {
@@ -1571,97 +1313,115 @@
           jobAd: safeTrim(document.getElementById("jobAd").value)
         },
         meta: {
-          version: "1.0.0",
+          version: "2.0.0",
           updated: "2026-02-27",
           file: "MyPersonalPortfolioWebsiteIntakeForm.html"
         }
       };
-      return data;
     }
 
     function buildPrompt(data){
-      // A practical prompt that mirrors the intent: fast, cheap, easy, accurate, and copyright-safe.
-      const lines = [];
+      const L = [];
+      L.push("You are a portfolio-website generator.");
+      L.push("");
+      L.push("Goal: Build an impactful portfolio website as quickly, cheaply, and easily as possible, using the user's pre-existing materials where available, while staying true to their real profile. Generate original content when needed and avoid copyright infringement.");
+      L.push("");
 
-      lines.push("You are a portfolio-website generator.");
-      lines.push("");
-      lines.push("Goal: Build an impactful portfolio website as quickly, cheaply, and easily as possible, using the user's pre-existing materials where available, while staying true to the user's real profile. Generate original content when needed and avoid copyright infringement.");
-      lines.push("");
+      L.push("BASIC INFO");
+      L.push(`Name: ${data.basic.name || "(not provided)"}`);
+      L.push(`Email: ${data.basic.email || "(not provided)"}`);
+      L.push(`Phone: ${data.basic.phone || "(not provided)"}`);
+      L.push(`Major: ${data.basic.major || "(not provided)"}`);
+      L.push(`Specialization: ${data.basic.specialization || "(not provided)"}`);
+      L.push(`LinkedIn: ${data.basic.linkedin || "(not provided)"}`);
+      L.push("");
 
-      lines.push("BASIC INFO");
-      lines.push(`Name: ${data.basic.name || "(not provided)"}`);
-      lines.push(`Email: ${data.basic.email || "(not provided)"}`);
-      lines.push(`Phone: ${data.basic.phone || "(not provided)"}`);
-      lines.push(`Major: ${data.basic.major || "(not provided)"}`);
-      lines.push(`Specialization: ${data.basic.specialization || "(not provided)"}`);
-      lines.push(`LinkedIn: ${data.basic.linkedin || "(not provided)"}`);
-      lines.push("");
+      L.push("TARGET JOB");
+      L.push(`Desired job position: ${data.job.desiredPosition || "(not provided)"}`);
+      L.push("Job posting (if provided):");
+      L.push(data.job.jobAd ? data.job.jobAd : "(none provided)");
+      L.push("");
 
-      lines.push("TARGET JOB");
-      lines.push(`Desired job position: ${data.job.desiredPosition || "(not provided)"}`);
-      lines.push("Job posting (if provided):");
-      lines.push(data.job.jobAd ? data.job.jobAd : "(none provided)");
-      lines.push("");
+      L.push("STYLE / COLOR SCHEME");
+      L.push(`Theme number: ${data.colors.themeNumber || "(none selected)"}`);
+      L.push(`Primary: ${data.colors.primary || "(blank)"}; Secondary: ${data.colors.secondary || "(blank)"}; Accent: ${data.colors.accent || "(blank)"}; Dark: ${data.colors.dark || "(blank)"}; Light: ${data.colors.light || "(blank)"}`);
+      L.push("");
 
-      lines.push("STYLE / COLOR SCHEME");
-      lines.push(`Theme number: ${data.colors.themeNumber || "(none selected)"}`);
-      lines.push(`Primary: ${data.colors.primary || "(blank)"}; Secondary: ${data.colors.secondary || "(blank)"}; Accent: ${data.colors.accent || "(blank)"}; Dark: ${data.colors.dark || "(blank)"}; Light: ${data.colors.light || "(blank)"}`);
-      lines.push("");
-
-      lines.push("OPTIONAL RESOURCES");
-      lines.push("Uploaded files (names only; file contents not included in this prompt):");
+      L.push("OPTIONAL RESOURCES");
+      L.push("Uploaded files (names only; file contents not included in this prompt):");
       if(data.resources.uploads.length){
-        data.resources.uploads.forEach(f => lines.push(`- ${f.name}`));
+        data.resources.uploads.forEach(f => L.push(`- ${f.name}`));
       }else{
-        lines.push("(none)");
+        L.push("(none)");
       }
-      lines.push("How to use uploaded files:");
-      lines.push(data.resources.uploadsHow ? data.resources.uploadsHow : "(no instructions provided)");
-      lines.push("");
+      L.push("How to use uploaded files:");
+      L.push(data.resources.uploadsHow ? data.resources.uploadsHow : "(no instructions provided)");
+      L.push("");
 
+      L.push("Public URLs:");
       if(data.resources.urls.length){
-        lines.push("Public URLs:");
-        data.resources.urls.forEach((u, i) => {
-          lines.push(`- ${u.url || "(blank url)"}${u.how ? " — " + u.how : ""}`);
-        });
-        lines.push("");
+        data.resources.urls.forEach(u => L.push(`- ${u.url || "(blank url)"}${u.how ? " — " + u.how : ""}`));
       }else{
-        lines.push("Public URLs:");
-        lines.push("(none)");
-        lines.push("");
+        L.push("(none)");
       }
+      L.push("");
 
+      L.push("Pasted Text Entries:");
       if(data.resources.textEntries.length){
-        lines.push("Pasted Text Entries:");
         data.resources.textEntries.forEach((t, i) => {
-          lines.push(`Entry ${i+1}:`);
-          lines.push(`- Type: ${t.fileType || "(blank)"}`);
-          lines.push(`- Section: ${t.sectionType || "(blank)"}`);
-          lines.push(`- Use: ${t.how || "(no instructions)"}`);
-          lines.push(`- Content:\n${t.content || "(blank)"}`);
-          lines.push("");
+          L.push(`Entry ${i+1}:`);
+          L.push(`- Type: ${t.fileType || "(blank)"}`);
+          L.push(`- Section: ${t.sectionType || "(blank)"}`);
+          L.push(`- Use: ${t.how || "(no instructions)"}`);
+          L.push(`- Content:\n${t.content || "(blank)"}`);
+          L.push("");
         });
       }else{
-        lines.push("Pasted Text Entries:");
-        lines.push("(none)");
-        lines.push("");
+        L.push("(none)");
+        L.push("");
       }
 
-      lines.push("COPYRIGHT / PERMISSION");
-      lines.push(data.resources.copyrightOk
+      L.push("COPYRIGHT / PERMISSION");
+      L.push(data.resources.copyrightOk
         ? "User confirmed: They have copyright/permission, or want inspiration only with sufficiently different original output to avoid infringement."
         : "User did NOT confirm copyright/permission (treat all third-party content as inspiration only; rewrite fully).");
-      lines.push("");
+      L.push("");
 
-      lines.push("OUTPUT REQUIREMENTS");
-      lines.push("- Produce a complete, responsive, multi-page portfolio website (HTML/CSS/JS) with a clean, modern design.");
-      lines.push("- Prioritize employability: clear headline, value proposition, quantified bullets, and easy navigation.");
-      lines.push("- Use the provided resources only as factual inputs or inspiration; rewrite wording to be original.");
-      lines.push("- If critical info is missing, generate reasonable placeholders but clearly label them as placeholders.");
-      lines.push("- Include a brief checklist of what the user should replace with real details.");
-      lines.push("");
+      L.push("OUTPUT REQUIREMENTS");
+      L.push("- Produce a complete, responsive portfolio webpage (HTML/CSS/JS) optimized for job-hunting.");
+      L.push("- Prioritize clarity and credibility: strong headline, specific skills, proof of work, and clean navigation.");
+      L.push("- Use resources only as factual inputs or inspiration; rewrite wording to be original.");
+      L.push("- If critical info is missing, generate placeholders but label them clearly as placeholders.");
+      L.push("- Include a short checklist of what the user should replace with real details.");
+      L.push("");
 
-      return lines.join("\n");
+      return L.join("\n");
+    }
+
+    function buildAdvice(data){
+      const tips = [];
+      tips.push("Show, don’t just tell: add proof (projects, metrics, links, screenshots, outcomes).");
+      tips.push("Lead with a 1-line headline that states your target role + specialty + value.");
+      tips.push("Quantify impact wherever possible (%, $, time saved, volume, accuracy, ratings).");
+      tips.push("Write for skimmers: short sections, strong headings, bullets, plenty of whitespace.");
+      tips.push("Tailor to the job ad: mirror keywords (truthfully) and map your evidence to their requirements.");
+      tips.push("Make contact frictionless: email + LinkedIn visible, plus a clear call-to-action.");
+
+      const bag = `${data.basic.major} ${data.basic.specialization} ${data.job.desiredPosition}`.toLowerCase();
+      if(/student|grad|intern|junior|entry/.test(bag)){
+        tips.push("Early-career tip: treat class projects as case studies (problem → approach → result).");
+      }
+      if(/data|analytics|science/.test(bag)){
+        tips.push("Data roles: include 1–2 mini case studies with dataset, method, and measurable result.");
+      }
+      if(/ux|research|design/.test(bag)){
+        tips.push("UX roles: show your process (research → synthesis → design → validation) with 1 clear artifact per step.");
+      }
+      if(/software|engineer|developer/.test(bag)){
+        tips.push("Software roles: add GitHub, list 2–3 tech stacks, and include short build notes per project.");
+      }
+
+      return tips.map((t,i) => `${i+1}. ${t}`).join("\n");
     }
 
     function escapeHtml(s){
@@ -1674,8 +1434,7 @@
     }
 
     function buildSummaryHtml(data){
-      const dt = new Date();
-      const iso = dt.toISOString();
+      const dt = new Date().toISOString();
 
       const uploads = data.resources.uploads.length
         ? `<ul>${data.resources.uploads.map(f => `<li>${escapeHtml(f.name)}</li>`).join("")}</ul>`
@@ -1687,18 +1446,17 @@
 
       const texts = data.resources.textEntries.length
         ? data.resources.textEntries.map((t, i) => `
-            <section class="card">
-              <h3>Text Entry ${i+1}</h3>
-              <p><strong>File type:</strong> ${escapeHtml(t.fileType || "")}</p>
-              <p><strong>Section type:</strong> ${escapeHtml(t.sectionType || "")}</p>
-              <p><strong>How to use:</strong> ${escapeHtml(t.how || "")}</p>
-              <pre>${escapeHtml(t.content || "")}</pre>
-            </section>
-          `).join("")
+          <section class="card">
+            <h3>Text Entry ${i+1}</h3>
+            <p><strong>File type:</strong> ${escapeHtml(t.fileType || "")}</p>
+            <p><strong>Section type:</strong> ${escapeHtml(t.sectionType || "")}</p>
+            <p><strong>How to use:</strong> ${escapeHtml(t.how || "")}</p>
+            <pre>${escapeHtml(t.content || "")}</pre>
+          </section>
+        `).join("")
         : `<p><em>(none)</em></p>`;
 
-      const html =
-`<!doctype html>
+      return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1709,77 +1467,65 @@
     *{ box-sizing:border-box; }
     body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background: var(--bg); color: var(--text); line-height:1.45; }
     a{ color:#8DE0FF; }
-    .wrap{ max-width: 980px; margin: 0 auto; padding: 22px 14px 54px; }
-    h1{ margin: 0 0 6px; font-size: 22px; }
-    .meta{ color: var(--muted); font-size: 12px; margin-bottom: 14px; }
-    .grid{ display:grid; gap: 12px; }
-    .card{ background: rgba(18,26,44,.75); border:1px solid var(--border); border-radius: 14px; padding: 14px; }
-    h2{ margin: 0 0 10px; font-size: 16px; }
-    h3{ margin: 0 0 8px; font-size: 14px; }
-    .row{ display:grid; gap: 10px; grid-template-columns: 1fr; }
-    @media (min-width: 820px){ .row{ grid-template-columns: 1fr 1fr; } }
+    .wrap{ max-width: 520px; margin: 0 auto; padding: 16px 12px 40px; }
+    h1{ margin: 0 0 6px; font-size: 18px; }
+    .meta{ color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .card{ background: rgba(18,26,44,.75); border:1px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 12px; }
+    h2{ margin: 0 0 10px; font-size: 14.5px; }
+    h3{ margin: 0 0 8px; font-size: 13px; }
     .kv{ margin: 0 0 6px; }
     .k{ color: var(--muted); font-size: 12px; display:block; }
-    .v{ font-weight: 650; }
+    .v{ font-weight: 700; }
     pre{ white-space: pre-wrap; word-break: break-word; background: rgba(0,0,0,.28); border:1px solid var(--border); border-radius: 12px; padding: 10px; color: rgba(234,240,255,.92); }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>Portfolio Website Intake Summary</h1>
-    <div class="meta">
-      Generated: ${escapeHtml(iso)} • Version: ${escapeHtml(data.meta.version)} • Updated: ${escapeHtml(data.meta.updated)}
-    </div>
+    <div class="meta">Generated: ${escapeHtml(dt)} • Version: ${escapeHtml(data.meta.version)} • Updated: ${escapeHtml(data.meta.updated)}</div>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Basic Information</h2>
-        <div class="row">
-          <p class="kv"><span class="k">Name</span><span class="v">${escapeHtml(data.basic.name)}</span></p>
-          <p class="kv"><span class="k">Email</span><span class="v">${escapeHtml(data.basic.email)}</span></p>
-          <p class="kv"><span class="k">Phone</span><span class="v">${escapeHtml(data.basic.phone || "(not provided)")}</span></p>
-          <p class="kv"><span class="k">Major</span><span class="v">${escapeHtml(data.basic.major || "(not provided)")}</span></p>
-          <p class="kv"><span class="k">Specialization</span><span class="v">${escapeHtml(data.basic.specialization || "(not provided)")}</span></p>
-          <p class="kv"><span class="k">LinkedIn</span><span class="v">${data.basic.linkedin ? `<a href="${escapeHtml(data.basic.linkedin)}">${escapeHtml(data.basic.linkedin)}</a>` : "(not provided)"}</span></p>
-        </div>
-      </section>
+    <section class="card">
+      <h2>Basic Information</h2>
+      <p class="kv"><span class="k">Name</span><span class="v">${escapeHtml(data.basic.name)}</span></p>
+      <p class="kv"><span class="k">Email</span><span class="v">${escapeHtml(data.basic.email)}</span></p>
+      <p class="kv"><span class="k">Phone</span><span class="v">${escapeHtml(data.basic.phone || "(not provided)")}</span></p>
+      <p class="kv"><span class="k">Major</span><span class="v">${escapeHtml(data.basic.major || "(not provided)")}</span></p>
+      <p class="kv"><span class="k">Specialization</span><span class="v">${escapeHtml(data.basic.specialization || "(not provided)")}</span></p>
+      <p class="kv"><span class="k">LinkedIn</span><span class="v">${data.basic.linkedin ? `<a href="${escapeHtml(data.basic.linkedin)}">${escapeHtml(data.basic.linkedin)}</a>` : "(not provided)"}</span></p>
+    </section>
 
-      <section class="card">
-        <h2>Optional Resources</h2>
-        <h3>Uploads</h3>
-        ${uploads}
-        <h3>How to use uploads</h3>
-        <pre>${escapeHtml(data.resources.uploadsHow || "")}</pre>
-        <h3>Public URLs</h3>
-        ${urls}
-        <h3>Text Entries</h3>
-        ${texts}
-        <p><strong>Copyright/permission confirmed:</strong> ${data.resources.copyrightOk ? "Yes" : "No"}</p>
-      </section>
+    <section class="card">
+      <h2>Optional Resources</h2>
+      <h3>Uploads</h3>
+      ${uploads}
+      <h3>How to use uploads</h3>
+      <pre>${escapeHtml(data.resources.uploadsHow || "")}</pre>
+      <h3>Public URLs</h3>
+      ${urls}
+      <h3>Text Entries</h3>
+      ${texts}
+      <p><strong>Copyright/permission confirmed:</strong> ${data.resources.copyrightOk ? "Yes" : "No"}</p>
+    </section>
 
-      <section class="card">
-        <h2>Color Scheme</h2>
-        <div class="row">
-          <p class="kv"><span class="k">Theme number</span><span class="v">${escapeHtml(data.colors.themeNumber || "(none)")}</span></p>
-          <p class="kv"><span class="k">Primary</span><span class="v">${escapeHtml(data.colors.primary || "(blank)")}</span></p>
-          <p class="kv"><span class="k">Secondary</span><span class="v">${escapeHtml(data.colors.secondary || "(blank)")}</span></p>
-          <p class="kv"><span class="k">Accent</span><span class="v">${escapeHtml(data.colors.accent || "(blank)")}</span></p>
-          <p class="kv"><span class="k">Dark</span><span class="v">${escapeHtml(data.colors.dark || "(blank)")}</span></p>
-          <p class="kv"><span class="k">Light</span><span class="v">${escapeHtml(data.colors.light || "(blank)")}</span></p>
-        </div>
-      </section>
+    <section class="card">
+      <h2>Color Scheme</h2>
+      <p class="kv"><span class="k">Theme number</span><span class="v">${escapeHtml(data.colors.themeNumber || "(none)")}</span></p>
+      <p class="kv"><span class="k">Primary</span><span class="v">${escapeHtml(data.colors.primary || "(blank)")}</span></p>
+      <p class="kv"><span class="k">Secondary</span><span class="v">${escapeHtml(data.colors.secondary || "(blank)")}</span></p>
+      <p class="kv"><span class="k">Accent</span><span class="v">${escapeHtml(data.colors.accent || "(blank)")}</span></p>
+      <p class="kv"><span class="k">Dark</span><span class="v">${escapeHtml(data.colors.dark || "(blank)")}</span></p>
+      <p class="kv"><span class="k">Light</span><span class="v">${escapeHtml(data.colors.light || "(blank)")}</span></p>
+    </section>
 
-      <section class="card">
-        <h2>Target Job</h2>
-        <p class="kv"><span class="k">Desired position</span><span class="v">${escapeHtml(data.job.desiredPosition || "(not provided)")}</span></p>
-        <h3>Job posting</h3>
-        <pre>${escapeHtml(data.job.jobAd || "(none provided)")}</pre>
-      </section>
-    </div>
+    <section class="card">
+      <h2>Target Job</h2>
+      <p class="kv"><span class="k">Desired position</span><span class="v">${escapeHtml(data.job.desiredPosition || "(not provided)")}</span></p>
+      <h3>Job posting</h3>
+      <pre>${escapeHtml(data.job.jobAd || "(none provided)")}</pre>
+    </section>
   </div>
 </body>
 </html>`;
-      return html;
     }
 
     function downloadFile(filename, text){
@@ -1797,7 +1543,6 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      // validate required from step 1 + step 2 checkbox + color format
       const err1 = validateStep1();
       if(err1){ showStep(1); return showError(1, err1); }
       clearError(1);
@@ -1817,19 +1562,17 @@
       // log all form data to console
       console.log("Portfolio Intake Form Submission:", data);
 
-      // success + prompt + summary
-      successBox.classList.add("show");
-
       const prompt = buildPrompt(data);
+      const advice = buildAdvice(data);
       const summaryHtml = buildSummaryHtml(data);
 
       promptPre.textContent = prompt;
+      advicePre.textContent = advice;
       summaryPre.textContent = summaryHtml;
 
-      // show output
+      successBox.classList.add("show");
       outputBox.classList.add("show");
 
-      // prepare download button handlers
       document.getElementById("downloadSummary").onclick = () => {
         downloadFile("MyPersonalPortfolioWebsiteSummary.html", summaryHtml);
       };
@@ -1840,7 +1583,6 @@
           document.getElementById("copyPrompt").textContent = "Copied!";
           setTimeout(() => document.getElementById("copyPrompt").textContent = "Copy prompt", 900);
         }catch{
-          // fallback
           const ta = document.createElement("textarea");
           ta.value = prompt;
           document.body.appendChild(ta);
@@ -1854,7 +1596,7 @@
     });
 
     /**********************
-     * Initialize: add one URL row and one text entry row (optional usability)
+     * Initialize with 1 URL row + 1 text entry for convenience
      **********************/
     urlRows.push({ url:"", how:"" });
     renderUrlRows();
@@ -1862,10 +1604,10 @@
     textEntries.push({ fileType:"raw", sectionType:"About / Bio", content:"", how:"" });
     renderTextEntries();
 
-    // default theme #1 into fields for convenience (user can overwrite)
+    // Default theme #1 into fields
     selectTheme(0, true);
 
-    // start step 1
+    // Start step 1
     showStep(1);
   </script>
 </body>

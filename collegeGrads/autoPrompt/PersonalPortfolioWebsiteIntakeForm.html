@@ -734,7 +734,78 @@
         }
 
         function addFileResource() {
-            addResource('fileResources', 'File (PDF/DOC/DOCX)', 'How do you want to use this?');
+            const container = document.getElementById('fileResources');
+            const entry = document.createElement('div');
+            entry.className = 'resource-entry';
+            entry.style.flexDirection = 'column';
+
+            const row = document.createElement('div');
+            row.style.cssText = 'display:flex; gap:10px; align-items:flex-start;';
+
+            // Left: upload button + file list
+            const leftCol = document.createElement('div');
+            leftCol.style.flex = '1';
+
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.pdf,.doc,.docx,.html,.htm,.md,.txt,.png,.jpg,.jpeg';
+            fileInput.multiple = true;
+            fileInput.style.cssText = 'width:100%; margin-bottom:6px;';
+
+            const fileList = document.createElement('div');
+            fileList.style.cssText = 'font-size:12px; color:#555;';
+
+            // Hidden textarea stores file names + readable content for collectResources
+            const hiddenContent = document.createElement('textarea');
+            hiddenContent.className = 'resource-input';
+            hiddenContent.style.display = 'none';
+
+            fileInput.addEventListener('change', () => {
+                fileList.innerHTML = '';
+                hiddenContent.value = '';
+                const reads = [];
+                Array.from(fileInput.files).forEach(file => {
+                    const item = document.createElement('div');
+                    item.textContent = '\uD83D\uDCCE ' + file.name;
+                    fileList.appendChild(item);
+
+                    const isText = /\.(txt|html?|md|css|js)$/i.test(file.name);
+                    if (isText) {
+                        reads.push(new Promise(resolve => {
+                            const reader = new FileReader();
+                            reader.onload = e => resolve('--- ' + file.name + ' ---\n' + e.target.result);
+                            reader.readAsText(file);
+                        }));
+                    } else {
+                        reads.push(Promise.resolve('[Uploaded file: ' + file.name + ']'));
+                    }
+                });
+                Promise.all(reads).then(contents => {
+                    hiddenContent.value = contents.join('\n\n');
+                });
+            });
+
+            leftCol.appendChild(fileInput);
+            leftCol.appendChild(fileList);
+            leftCol.appendChild(hiddenContent);
+
+            // Right: description
+            const descInput = document.createElement('textarea');
+            descInput.className = 'resource-input';
+            descInput.placeholder = 'How do you want to use this?';
+            descInput.style.cssText = 'flex:1; min-height:80px;';
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'btn-secondary remove-btn';
+            removeBtn.textContent = 'Remove';
+            removeBtn.onclick = e => { e.preventDefault(); entry.remove(); };
+
+            row.appendChild(leftCol);
+            row.appendChild(descInput);
+            row.appendChild(removeBtn);
+            entry.appendChild(row);
+            container.appendChild(entry);
         }
 
         function addUrlResource() {

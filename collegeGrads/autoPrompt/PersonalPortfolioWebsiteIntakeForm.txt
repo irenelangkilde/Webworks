@@ -2,9 +2,9 @@ IGNORE-LINES: lines beginning with # are comments
 Instructions for Generative AI model in double square brackets should not be communicated to users. Eg: [[Do this but don't print it.]]
 
 # PersonalPortfolioWebsiteIntakeForm.txt — a complete, standalone HTML file ready to embed in your website.
-# Version: 1.0.0
+# Version: 2.0.0
 # Updated: 2026-02-27
-# Model: Claude
+# Model: ChatGPT
 # Device: mobile
 
 [[I'd like a college graduate intake form with the following specifications.  The goal of these instructions 
