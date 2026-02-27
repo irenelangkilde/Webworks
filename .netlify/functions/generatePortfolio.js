@@ -27,16 +27,15 @@ exports.handler = async (event) => {
     const prompt = buildPortfolioPrompt(formData);
 
     try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-api-key': process.env.ANTHROPIC_API_KEY,
-                'anthropic-version': '2023-06-01'
+                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
             },
             body: JSON.stringify({
-                model: 'claude-sonnet-4-6',
-                max_tokens: 16000,
+                model: 'gpt-4o-mini',
+                max_tokens: 4000,
                 messages: [{ role: 'user', content: prompt }]
             })
         });
@@ -47,14 +46,14 @@ exports.handler = async (event) => {
             return {
                 statusCode: response.status,
                 headers: CORS_HEADERS,
-                body: JSON.stringify({ error: data.error?.message || 'Claude API error' })
+                body: JSON.stringify({ error: data.error?.message || 'OpenAI API error' })
             };
         }
 
         return {
             statusCode: 200,
             headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ html: data.content[0].text })
+            body: JSON.stringify({ html: data.choices[0].message.content })
         };
 
     } catch (error) {
