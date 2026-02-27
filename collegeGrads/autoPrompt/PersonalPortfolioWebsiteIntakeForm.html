@@ -237,6 +237,34 @@
             display: block;
         }
 
+        .generating-message {
+            background: #e3f2fd;
+            color: #0d47a1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .generating-message.show {
+            display: block;
+        }
+
+        .error-message {
+            background: #fdecea;
+            color: #b71c1c;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
         .tip {
             background: #e3f2fd;
             padding: 10px;
@@ -503,9 +531,15 @@
             </div>
         </form>
 
-        <div class="success-message" id="successMessage">
-            ✓ Form submitted successfully! We'll help you build your portfolio.
+        <div class="generating-message" id="generatingMessage">
+            ⏳ Generating your portfolio website — this may take 20–30 seconds...
         </div>
+
+        <div class="success-message" id="successMessage">
+            ✓ Your portfolio was generated and opened in a new tab!
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
 
         <div class="reset-btn-container">
             <span class="reset-link" id="resetLink" onmouseenter="enableReset()" onmouseleave="disableReset()" ondblclick="resetForm()">Double-click to reset form</span>
@@ -616,7 +650,7 @@
             showForm(formNumber - 1);
         }
 
-        function submitForm(event) {
+        async function submitForm(event) {
             event.preventDefault();
 
             if (!validateForm(3)) return;
@@ -645,12 +679,45 @@
 
             console.log('Portfolio Website Form Data:', formData);
 
-            document.getElementById('successMessage').classList.add('show');
+            const generatingEl = document.getElementById('generatingMessage');
+            const successEl    = document.getElementById('successMessage');
+            const errorEl      = document.getElementById('errorMessage');
 
-            // Reset after 10 minutes
-            setTimeout(() => {
-                resetForm();
-            }, 600000);
+            generatingEl.classList.add('show');
+            successEl.classList.remove('show');
+            errorEl.classList.remove('show');
+
+            try {
+                const res = await fetch('/.netlify/functions/generatePortfolio', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await res.json();
+                generatingEl.classList.remove('show');
+
+                if (!res.ok || result.error) {
+                    errorEl.textContent = '✗ Error: ' + (result.error || 'Something went wrong. Please try again.');
+                    errorEl.classList.add('show');
+                    return;
+                }
+
+                // Open generated portfolio in a new tab
+                const win = window.open('', '_blank');
+                win.document.write(result.html);
+                win.document.close();
+
+                successEl.classList.add('show');
+
+                // Reset after 10 minutes
+                setTimeout(() => resetForm(), 600000);
+
+            } catch (err) {
+                generatingEl.classList.remove('show');
+                errorEl.textContent = '✗ Network error: ' + err.message;
+                errorEl.classList.add('show');
+            }
         }
 
         function collectResources(containerId) {
@@ -822,6 +889,8 @@ Troubleshooting & tips
             });
 
             document.getElementById('successMessage').classList.remove('show');
+            document.getElementById('generatingMessage').classList.remove('show');
+            document.getElementById('errorMessage').classList.remove('show');
             document.getElementById('sectionTypeDropdown').style.display = 'none';
             showForm(1);
         }

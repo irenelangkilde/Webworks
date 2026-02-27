@@ -12,7 +12,7 @@ Instructions for Generative AI model in double square brackets should not be com
     the user's expenditure of time, money, and energy while remaining true to their actual profile and molding the content. So we 
     want to gather as much pre-existing information as is available and leverage AI as much as possible.]]
 
-Page 1: Basic Information [[single column, mobile responsive]]
+Page 1: Basic Information [[single column, mobile responsive, max-width 480px]]
 Name (required)
 Email (required)
 Phone [pretty formatted without any comment]
@@ -59,7 +59,8 @@ Page 4:
     Progress bar showing each step progression
     Form validation (lenient for optional fields; Name required on page 1)
     All form data collected and logged to console on submission
-    Upon Submit, Display Success message and also generate and display a new AI prompt incorporating all the form answers]]
+    Upon Submit, Display Success message and also generate and display a new AI prompt incorporating all the form answers to generate a webpage. 
+    In addition to the webpage, generate some custom advice for the user, such as "Show, don't just tell."]]
 
 Upon submission of form, write a summary of entire form to MyPersonalPortfolioWebsiteSummary.html
 
