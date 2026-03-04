@@ -1,5 +1,5 @@
 [build]
-  publish = "Webworks/collegeGrads/autoprompt"
+  publish = "collegeGrads/autoPrompt"
   functions = ".netlify/functions"
 
 [functions]
