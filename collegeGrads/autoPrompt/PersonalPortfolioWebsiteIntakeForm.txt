@@ -19,7 +19,26 @@ Specialization
 LinkedIn URL [[For employer reference]]
 Buttons: Reset (must be double-clicked), Next
 
-Page 2: Optional Portfolio Resources---Upload or paste pre-existing resume(s), templates, examples and/or components to be used as models for content, layout and/or style.
+Page 2: Color scheme
+    Embed color-themes.html and display 20 options for the user to choose between.
+    Allow user to choose one of above color themes by number or else enter the color codes in hex below. Show blank short text boxes as follow:
+      1. Primary
+      2. Secondary
+      3. Accent
+      4. Dark
+      5. Light
+
+Buttons at both top and bottom: Back, Next
+Upon Next, Send a prompt to ChatGPT telling it to generate a portfolio website using the information previously entered. Don’t block the user unnecessarily.
+Recommended flow:
+    User clicks Next on page 2
+    Show a “Generating preview…” state
+    When done, show:
+        JSON preview (collapsed) + download
+        HTML preview (collapsed) + download
+“Continue to Page 3” button
+
+Page 3: Optional Portfolio Resources---Upload or paste pre-existing resume(s), templates, examples and/or components to be used as models for content, layout and/or style.
 [[Avoid giving user redundant instructions.]]
 Tips for user:
 0. Don't aim for perfection and completeness on the first iteration.  Get a draft as quickly as possible and then refine it.
@@ -44,17 +63,6 @@ Tips for user:
    the fourth a long text box for the user to describe how they want the Content box to be used.
    
 A required checkbox labeled "I have the copyright or written permission to use these resources, or I only want to use it as inspiration---please generate something different enough to avoid copyright infringement."
-Buttons at both top and bottom: Back, Next
-
-Page 3: Color scheme
-    Embed color-themes.html and display 20 options for the user to choose between.
-    Allow user to choose one of above color themes by number or else enter the color codes in hex below. Show blank short text boxes as follow:
-      1. Primary
-      2. Secondary
-      3. Accent
-      4. Dark
-      5. Light
-
 Buttons at both top and bottom: Back, Next
 
 Page 4:
