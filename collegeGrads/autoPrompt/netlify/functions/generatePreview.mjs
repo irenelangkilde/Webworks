@@ -402,7 +402,7 @@ export async function handler(event) {
 
     const prompt = buildPreviewPrompt(page1, { ...page2, theme });
 
-    // Responses API: structured outputs use text.format (per migration guidance) :contentReference[oaicite:3]{index=3}
+    // Responses API: structured outputs use text.format (per migration guidance)
     const resp = await client.responses.create({
       model: "gpt-5-mini", // your scalable default
       input: [
